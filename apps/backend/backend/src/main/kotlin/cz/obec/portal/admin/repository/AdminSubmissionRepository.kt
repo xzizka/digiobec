@@ -24,11 +24,11 @@ interface AdminSubmissionRepository : JpaRepository<Submission, UUID> {
     @Query(
         """SELECT s FROM Submission s
            WHERE (:#{#statuses == null || #statuses.isEmpty()} = true OR s.status IN :statuses)
-             AND (:formKey IS NULL OR s.formKey = :formKey)
-             AND (:from IS NULL OR s.createdAt >= :from)
-             AND (:to IS NULL OR s.createdAt <= :to)
-             AND (:query IS NULL OR LOWER(s.trackingCode) LIKE LOWER(CONCAT('%', :query, '%'))
-                  OR LOWER(COALESCE(s.contactEmail, '')) LIKE LOWER(CONCAT('%', :query, '%')))"""
+             AND (:#{#formKey == null} = true OR s.formKey = :formKey)
+             AND (:#{#from == null} = true OR s.createdAt >= :from)
+             AND (:#{#to == null} = true OR s.createdAt <= :to)
+             AND (:#{#query == null} = true OR LOWER(s.trackingCode) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%'))
+                  OR LOWER(COALESCE(s.contactEmail, '')) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')))"""
     )
     fun search(
         @Param("statuses") statuses: List<SubmissionStatus>?,
@@ -48,11 +48,11 @@ interface AdminSubmissionRepository : JpaRepository<Submission, UUID> {
     @Query(
         """SELECT s FROM Submission s
            WHERE (:#{#statuses == null || #statuses.isEmpty()} = true OR s.status IN :statuses)
-             AND (:formKey IS NULL OR s.formKey = :formKey)
-             AND (:from IS NULL OR s.createdAt >= :from)
-             AND (:to IS NULL OR s.createdAt <= :to)
-             AND (:query IS NULL OR LOWER(s.trackingCode) LIKE LOWER(CONCAT('%', :query, '%'))
-                  OR LOWER(COALESCE(s.contactEmail, '')) LIKE LOWER(CONCAT('%', :query, '%')))
+             AND (:#{#formKey == null} = true OR s.formKey = :formKey)
+             AND (:#{#from == null} = true OR s.createdAt >= :from)
+             AND (:#{#to == null} = true OR s.createdAt <= :to)
+             AND (:#{#query == null} = true OR LOWER(s.trackingCode) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%'))
+                  OR LOWER(COALESCE(s.contactEmail, '')) LIKE LOWER(CONCAT('%', CAST(:query AS string), '%')))
            ORDER BY s.createdAt DESC"""
     )
     @Transactional(readOnly = true)

@@ -1,0 +1,100 @@
+{
+  "realm": "portal",
+  "enabled": true,
+  "displayName": "Občanský portál obce",
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 300,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "revokeRefreshToken": true,
+  "refreshTokenMaxReuse": 0,
+  "roles": {
+    "realm": [
+      {
+        "name": "clerk",
+        "description": "Municipal office clerk - can view and process citizen submissions in the admin dashboard."
+      }
+    ]
+  },
+  "defaultDefaultClientScopes": [
+    "role_list",
+    "profile",
+    "email",
+    "web-origins",
+    "roles",
+    "basic",
+    "acr"
+  ],
+  "defaultOptionalClientScopes": [
+    "offline_access",
+    "address",
+    "phone",
+    "microprofile-jwt"
+  ],
+  "clients": [
+    {
+      "clientId": "admin-web",
+      "name": "Admin Web (clerk dashboard)",
+      "description": "React admin-web SPA. Public client, Authorization Code + PKCE only - no client secret is issued or stored in the browser.",
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "authorizationServicesEnabled": false,
+      "redirectUris": [
+        "http://localhost:5173/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5173"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*"
+      },
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email",
+        "basic"
+      ]
+    },
+    {
+      "clientId": "portal-backend",
+      "name": "Portal Backend (resource server)",
+      "description": "Spring Boot backend - bearer-only resource server, validates JWTs issued for admin-web; never initiates its own login flow.",
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "bearerOnly": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false
+    }
+  ],
+  "users": [
+    {
+      "username": "jana.klerkova",
+      "email": "jana.klerkova@obec.cz",
+      "emailVerified": true,
+      "enabled": true,
+      "firstName": "Jana",
+      "lastName": "Klerková",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Klerk123!",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "clerk"
+      ]
+    }
+  ]
+}

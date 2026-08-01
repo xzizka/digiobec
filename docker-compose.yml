@@ -21,7 +21,11 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.0
     container_name: portal-keycloak
-    command: start-dev
+    # --import-realm loads keycloak/realm-portal.json on every startup (idempotent:
+    # Keycloak skips a realm that already exists), so `docker compose up` alone
+    # reproduces the "portal" realm, the clerk role, both OIDC clients, and the
+    # seeded test clerk user - no manual Admin Console clicking required.
+    command: start-dev --import-realm
     environment:
       KC_BOOTSTRAP_ADMIN_USER: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
@@ -31,6 +35,8 @@ services:
       KC_DB_PASSWORD: portal
     ports:
       - "8080:8080"
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
     depends_on:
       postgres:
         condition: service_healthy

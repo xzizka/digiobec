@@ -9,6 +9,8 @@ import jakarta.persistence.Index
 import jakarta.persistence.PrePersist
 import jakarta.persistence.PreUpdate
 import jakarta.persistence.Table
+import org.hibernate.annotations.JdbcTypeCode
+import org.hibernate.type.SqlTypes
 import java.time.Instant
 import java.util.UUID
 
@@ -35,7 +37,16 @@ data class Submission(
     @Column(name = "form_key", nullable = false, length = 100)
     val formKey: String,
 
-    /** Arbitrary validated JSON document matching the form's JSON Schema. */
+    /**
+     * Arbitrary validated JSON document matching the form's JSON Schema.
+     *
+     * `@JdbcTypeCode(SqlTypes.JSON)` is required here — without it Hibernate
+     * binds this as a plain varchar parameter, which Postgres accepts on
+     * INSERT (implicit unknown->jsonb cast) but rejects on UPDATE with
+     * "column form_data is of type jsonb but expression is of type character
+     * varying". That silently broke every subsequent status change (T-06-02).
+     */
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "form_data", nullable = false, columnDefinition = "jsonb")
     val formData: String,
 

@@ -3,6 +3,7 @@ plugins {
     id("io.spring.dependency-management")
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.kotlin.plugin.spring")
+    id("org.jetbrains.kotlin.plugin.jpa")
 }
 
 group = "cz.obec.portal"
@@ -71,4 +72,11 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+springBoot {
+    // Generates META-INF/build-info.properties so the actuator `info`
+    // endpoint (and HealthController's BuildProperties dependency) resolve
+    // under `./gradlew bootRun`, not just a packaged jar.
+    buildInfo()
 }

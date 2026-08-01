@@ -85,11 +85,20 @@ class AdminSubmissionService(
         val submission = submissionRepository.findById(id)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Podání nenalezeno.") }
 
-        if (!SubmissionStateMachine.isValidTransition(submission.status, request.newState)) {
+        // Capture BEFORE save(): submission.status is a Kotlin `val`, but `save()`
+        // merges `updated` into the same persistence-context-managed instance
+        // backing `submission` (both share the entity's @Id), mutating this
+        // object's backing field in place. Reading submission.status *after*
+        // save() silently returns the NEW status, corrupting the audit trail
+        // with old==new no-op transitions (T-06-03 - discovered via live
+        // integration testing against real Postgres, not just mocked tests).
+        val previousStatus = submission.status
+
+        if (!SubmissionStateMachine.isValidTransition(previousStatus, request.newState)) {
             throw ResponseStatusException(
                 HttpStatus.CONFLICT,
-                "Neplatný přechod stavu: ${submission.status} -> ${request.newState}. " +
-                    "Povolené přechody: ${SubmissionStateMachine.validNextStates(submission.status)}",
+                "Neplatný přechod stavu: $previousStatus -> ${request.newState}. " +
+                    "Povolené přechody: ${SubmissionStateMachine.validNextStates(previousStatus)}",
             )
         }
 
@@ -104,7 +113,7 @@ class AdminSubmissionService(
                 submissionId = submission.id,
                 clerkId = clerkId,
                 clerkUsername = clerkUsername,
-                oldStatus = submission.status,
+                oldStatus = previousStatus,
                 newStatus = request.newState,
                 comment = request.comment,
             ),
