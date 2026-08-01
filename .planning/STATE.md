@@ -1,8 +1,23 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: unknown
+stopped_at: Completed 01-07-PLAN.md (Citizen Web MVP) - Phase 1 complete
+last_updated: "2026-08-01T19:24:07.047Z"
+progress:
+  total_phases: 1
+  completed_phases: 1
+  total_plans: 7
+  completed_plans: 7
+---
+
 # STATE: Municipal Citizen Portal
 
 ## Project Memory
 
 ### Initialized
+
 - **Date:** 2025-07-31
 - **Initiator:** User request via opencode
 - **Method:** gsd-new-project workflow
@@ -24,14 +39,17 @@
 | Keycloak realm import plně automatizovaný (`keycloak/realm-portal.json` + `--import-realm`) | Uživatel explicitně žádal žádné manuální kroky v Admin Console; `docker compose up` reprodukuje celý auth stack (realm, role `clerk`, oba OIDC klienty, seed test uživatel) | 2026-08-01 |
 | SubmissionStatus rozšířen: SUBMITTED→PROCESSING→COMPLETED/REJECTED/NEEDS_INFO | Nahradil Plan 03 IN_PROGRESS/APPROVED; odpovídá skutečnému clerk workflow (Plan 06) | 2026-08-01 |
 | MFA pro úředníky (T-06-01) odloženo | Vyžadovalo by interaktivní TOTP enrollment, což je v rozporu s plnou automatizací seed uživatele; sledováno jako follow-up | 2026-08-01 |
+| Broumy design tokens single-sourced do nového workspace package `@digiobec/broumy-tokens` | admin-web i citizen-web sdílí identické CSS tokeny/theme místo duplicitní kopie; komponenty (Broumy* React) zůstaly lokální per-app (nižší riziko než plná extrakce) | 2026-08-01 |
 
 ### Research Completed
+
 - [x] Czech eGov integrations (eIdentita, ISDS, ISVS, payments, accessibility law)
 - [x] Flutter architecture (state mgmt, navigation, local DB, security, a11y, CI/CD)
 - [x] Spring Boot backend (modular monolith, Keycloak, multi-tenancy, integrations, observability)
 - [x] UX research (personas, journeys, WCAG 2.1 AA, trust, competitive analysis)
 
 ### Requirements Status
+
 - **REQUIREMENTS.md** created with 10 functional areas (FR-01 to FR-10)
 - **ROADMAP.md** created with 5 phases, 28 sprints, milestones, team structure
 
@@ -45,17 +63,22 @@
 | 01-04: RÚIAN + Czech POINT | 2 | ✅ **DONE** | [01-04-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-04-SUMMARY.md) |
 | 01-05: PDF Confirmation | 3 | ✅ **DONE** | [01-05-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-05-SUMMARY.md) |
 | 01-06: Admin Web MVP | 3 | ✅ **DONE** | [01-06-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-06-SUMMARY.md) |
-| 01-07: Citizen Web MVP | 4 | ⏳ PENDING | — |
+| 01-07: Citizen Web MVP | 4 | ✅ **DONE** | [01-07-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-07-SUMMARY.md) |
+
+**Phase 1 (Foundation & Guest Mode) is now complete — all 7 plans done.**
 
 ### Next Actions
-1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 4`** — remaining Plan 07 (Citizen Web MVP)
-3. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
-4. **Follow-ups (Plan 02):** `flutter test --coverage > 80%` gating; Storybook (React) / Widgetbook (Flutter) docs; `flutter drive` axe-core web a11y v CI
-5. **Follow-ups (Plan 04):** Drift offline cache (last 50 searches); nightly PostgreSQL RÚIAN import; cert pinning pro RÚIAN/Czech POINT; Český POINT API provisioning (Ministry)
-6. **Follow-ups (Plan 05):** Rate limit na PDF/confirmation endpointech; digitální podpis PDF (fáze 2, T-05-01); PDF/UA tagged a11y + verapdf do CI; generování PDF přes `CompletableFuture` + cache 1h (T-05-05)
-7. **Follow-ups (Plan 06):** MFA pro úředníky (T-06-01, TOTP enrollment); per-form SLA lhůty (aktuálně jednotných 30 dní pro všechny formuláře); rate limit na `/api/admin/**`; Keycloak `KC_BOOTSTRAP_ADMIN_USER` nevytváří perzistentní admin uživatele (Keycloak 26.0.8 quirk, netýká se realm importu); docker-compose Keycloak healthcheck používá `curl`, který v image chybí (pre-existing, healthcheck hlásí unhealthy i když kontejner funguje)
+
+1. **Phase 1 complete — start Phase 2 planning** (`/gsd-plan-phase` for the next roadmap phase, or `/gsd-discuss-phase` first if scope needs discussion)
+2. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
+3. **Follow-ups (Plan 02):** `flutter test --coverage > 80%` gating; Storybook (React) / Widgetbook (Flutter) docs; `flutter drive` axe-core web a11y v CI
+4. **Follow-ups (Plan 04):** Drift offline cache (last 50 searches); nightly PostgreSQL RÚIAN import; cert pinning pro RÚIAN/Czech POINT; Český POINT API provisioning (Ministry)
+5. **Follow-ups (Plan 05):** Rate limit na PDF/confirmation endpointech; digitální podpis PDF (fáze 2, T-05-01); PDF/UA tagged a11y + verapdf do CI; generování PDF přes `CompletableFuture` + cache 1h (T-05-05)
+6. **Follow-ups (Plan 06):** MFA pro úředníky (T-06-01, TOTP enrollment); per-form SLA lhůty (aktuálně jednotných 30 dní pro všechny formuláře); rate limit na `/api/admin/**`; Keycloak `KC_BOOTSTRAP_ADMIN_USER` nevytváří perzistentní admin uživatele (Keycloak 26.0.8 quirk, netýká se realm importu); docker-compose Keycloak healthcheck používá `curl`, který v image chybí (pre-existing, healthcheck hlásí unhealthy i když kontejner funguje)
+7. **Follow-ups (Plan 07):** RÚIAN AddressAutocomplete built+tested in citizen-web but unwired (no live form has an address field yet); mobile `FormDefinition.fromJson` (Plan 03) likely throws at runtime — it casts the backend's `schema`/`uiSchema` directly to a `Map`, but they arrive as JSON-encoded strings (discovered via citizen-web's live verification, not fixed — mobile out of scope for Plan 07); backend CORS/rate-limiting for citizen-web's public endpoints (T-07-04/05/06) not yet added (frontend-only plan)
 
 ### Open Questions
+
 - [ ] Citizen Portal federation API spec (DIA/NAKIT) – need contact
 - [ ] Czech POINT 2.0 API for municipal service types – research
 - [ ] PSD2 acquirer selection for municipal payments – procurement
@@ -63,6 +86,7 @@
 - [ ] Senior usability validation (65+ low digital literacy) – plan user testing
 
 ### Artifacts Location
+
 ```
 .planning/
 ├── PROJECT.md          # Vision, scope, constraints
@@ -82,11 +106,13 @@
 │   ├── 01-04-SUMMARY.md ✅
 │   ├── 01-05-SUMMARY.md ✅
 │   ├── 01-06-SUMMARY.md ✅
+│   ├── 01-07-SUMMARY.md ✅
 │   └── SKELETON.md
 └── STATE.md            # This file
 ```
 
 ### Git History
+
 - `f5e6c88` — Initial commit: PROJECT.md, config.json, REQUIREMENTS.md, ROADMAP.md, STATE.md
 - `c8124d7` — .gitignore + remove build artifacts
 - `a226c1d` — Remove duplicate top-level dirs, keep monorepo apps/ structure
@@ -100,3 +126,16 @@
 - *(next)* — **Plan 04: RÚIAN + Czech POINT — autocomplete, locator map/list (mobile + admin-web)**
 - *(next)* — **Plan 05: PDF/A-1b confirmation with QR — mobile preview + admin preview/download**
 - **Plan 06 complete: Keycloak PKCE auth + admin submissions dashboard (SLA badges, state machine, audit trail, streaming CSV export)** — commits `2f79cbe`, `53ddc1e`, `bdc904b`, `c338a5b`, `94d1761`, `d008c24`
+- **Plan 07 complete: Citizen Web MVP — catalog/dynamic form/submit/tracking/PDF, shared Broumy tokens package** — commits `f4a7b72`, `c71b519`, `3d79e5e`
+
+## Performance Metrics
+
+| Plan | Duration | Tasks | Files |
+|------|----------|-------|-------|
+| Phase 01 P07 | ~50min | 3 tasks | 60 files |
+
+## Session
+
+**Last session:** 2026-08-01T19:24:07.027Z
+**Stopped at:** Completed 01-07-PLAN.md (Citizen Web MVP) - Phase 1 complete
+**Resume file:** None
