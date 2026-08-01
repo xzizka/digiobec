@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class AppTheme {
   // gov.cz design system inspired colors
@@ -29,12 +30,11 @@ class AppTheme {
         secondary: secondaryColor,
         secondaryContainer: secondaryColor.withValues(alpha: 0.1),
         surface: surfaceColor,
-        background: backgroundColor,
+        surfaceContainerLowest: backgroundColor,
         error: errorColor,
         onPrimary: textOnPrimary,
         onSecondary: textOnPrimary,
         onSurface: textPrimary,
-        onBackground: textPrimary,
         onError: textOnPrimary,
       ),
       scaffoldBackgroundColor: backgroundColor,
@@ -122,7 +122,7 @@ class AppTheme {
         bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: textSecondary),
       ),
       // Accessibility
-      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+      pageTransitionsTheme: PageTransitionsTheme(builders: {
         TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
       }),
@@ -138,12 +138,11 @@ class AppTheme {
         secondary: secondaryColor,
         secondaryContainer: secondaryColor.withValues(alpha: 0.2),
         surface: const Color(0xFF1E1E1E),
-        background: const Color(0xFF121212),
+        surfaceContainerHighest: const Color(0xFF121212),
         error: errorColor,
         onPrimary: textOnPrimary,
         onSecondary: textOnPrimary,
         onSurface: Colors.white,
-        onBackground: Colors.white,
         onError: textOnPrimary,
       ),
       scaffoldBackgroundColor: const Color(0xFF121212),

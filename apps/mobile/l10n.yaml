@@ -5,7 +5,7 @@
       "en"
     ],
     "fallback_locale": "cs",
-    "generate": true
+    "generate": false
   },
   "easy_localization": {
     "source_dir": "assets/translations",

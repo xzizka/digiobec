@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import 'features/guest_submission/presentation/pages/home_page.dart';
+import '../../features/guest_submission/presentation/pages/home_page.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
