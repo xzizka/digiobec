@@ -1,5 +1,6 @@
 package cz.obec.portal.health
 
+import cz.obec.portal.config.SecurityConfig
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -7,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.info.BuildProperties
 import org.springframework.boot.actuate.health.Health
 import org.springframework.boot.actuate.health.Status
+import org.springframework.context.annotation.Import
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
@@ -14,7 +16,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.mockito.Mockito.`when`
 import org.springframework.http.MediaType
 
+// Import the real SecurityConfig so this slice exercises the actual permitAll
+// rule for non-/api/admin/** paths, instead of Spring Boot's default
+// deny-all-until-authenticated fallback that would otherwise apply now that
+// spring-boot-starter-security is on the classpath (plan 06).
 @WebMvcTest(HealthController::class)
+@Import(SecurityConfig::class)
 @TestPropertySource(properties = ["spring.liquibase.enabled=false"])
 class HealthControllerTest {
 

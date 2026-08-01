@@ -1,0 +1,79 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.2.0__admin_status_rename
+      author: portal-team
+      comment: >
+        Aligns SubmissionStatus with the admin clerk workflow
+        (SUBMITTED -> PROCESSING -> COMPLETED/REJECTED/NEEDS_INFO).
+      changes:
+        - sql:
+            sql: UPDATE submission SET status = 'PROCESSING' WHERE status = 'IN_PROGRESS';
+        - sql:
+            sql: UPDATE submission SET status = 'COMPLETED' WHERE status = 'APPROVED';
+
+  - changeSet:
+      id: v1.2.0__submission_audit_log
+      author: portal-team
+      comment: Append-only audit trail for clerk-driven status changes (T-06-03).
+      changes:
+        - createTable:
+            tableName: submission_audit_log
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: submission_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_audit_submission
+                    references: submission(id)
+              - column:
+                  name: clerk_id
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: clerk_username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: old_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: new_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: submission_audit_log
+            indexName: idx_audit_submission_id
+            columns:
+              - column:
+                  name: submission_id
+
+        - createIndex:
+            tableName: submission_audit_log
+            indexName: idx_audit_created_at
+            columns:
+              - column:
+                  name: created_at

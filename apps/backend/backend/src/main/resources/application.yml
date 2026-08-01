@@ -19,6 +19,16 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     contexts: ${LIQUIBASE_CONTEXTS:dev}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/portal}
+  mvc:
+    async:
+      # CSV export streaming ceiling (T-06-05) — a pathological export can't
+      # hold a worker thread past this.
+      request-timeout: 60000
   doc:
     api-docs:
       path: /api/v3/api-docs
