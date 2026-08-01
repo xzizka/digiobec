@@ -1,4 +1,4 @@
-/// Accessible gov.cz text field.
+/// Accessible Broumy text field.
 ///
 /// Provides label, hint, helper/error text, character counter and optional
 /// prefix/suffix icons with full semantics wiring: the input is labelled via
@@ -7,10 +7,10 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzTextField extends StatefulWidget {
-  const GovCzTextField({
+class BroumyTextField extends StatefulWidget {
+  const BroumyTextField({
     super.key,
     required this.label,
     this.controller,
@@ -58,10 +58,10 @@ class GovCzTextField extends StatefulWidget {
   final String? initialValue;
 
   @override
-  State<GovCzTextField> createState() => _GovCzTextFieldState();
+  State<BroumyTextField> createState() => _BroumyTextFieldState();
 }
 
-class _GovCzTextFieldState extends State<GovCzTextField> {
+class _BroumyTextFieldState extends State<BroumyTextField> {
   late final TextEditingController _internalController;
   late final bool _usesExternalController;
 
@@ -102,15 +102,15 @@ class _GovCzTextFieldState extends State<GovCzTextField> {
         decoration: InputDecoration(
           labelText: widget.label,
           labelStyle: const TextStyle(
-            color: GovCzColors.textPrimary,
-            fontWeight: GovCzType.medium,
+            color: BroumyColors.textPrimary,
+            fontWeight: BroumyType.medium,
           ),
           hintText: widget.hintText,
           helperText: widget.helperText,
           errorText: widget.errorText,
           errorStyle: const TextStyle(
-            color: GovCzColors.error,
-            fontWeight: GovCzType.medium,
+            color: BroumyColors.error,
+            fontWeight: BroumyType.medium,
           ),
           prefixIcon: widget.prefixIcon == null
               ? null

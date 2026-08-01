@@ -1,27 +1,27 @@
-/// Accessible gov.cz button with variants and full state coverage.
+/// Accessible Broumy button with variants and full state coverage.
 ///
 /// Variants: primary (default), secondary, outline, ghost, destructive.
 /// All variants keep a 48px minimum touch target, visible focus ring and
 /// correct semantics for screen readers. Values come exclusively from the
-/// tokens in `govcz_tokens.dart`.
+/// tokens in `broumy_tokens.dart`.
 library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-enum GovCzButtonVariant { primary, secondary, outline, ghost, destructive }
+enum BroumyButtonVariant { primary, secondary, outline, ghost, destructive }
 
 /// Size variants controlling height; touch target never drops below 48px.
-enum GovCzButtonSize { md, lg }
+enum BroumyButtonSize { md, lg }
 
-class GovCzButton extends StatelessWidget {
-  const GovCzButton({
+class BroumyButton extends StatelessWidget {
+  const BroumyButton({
     super.key,
     required this.child,
     required this.onPressed,
-    this.variant = GovCzButtonVariant.primary,
-    this.size = GovCzButtonSize.md,
+    this.variant = BroumyButtonVariant.primary,
+    this.size = BroumyButtonSize.md,
     this.loading = false,
     this.icon,
     this.semanticLabel,
@@ -34,8 +34,8 @@ class GovCzButton extends StatelessWidget {
   /// Invoked when the button is pressed. `null` disables the button.
   final VoidCallback? onPressed;
 
-  final GovCzButtonVariant variant;
-  final GovCzButtonSize size;
+  final BroumyButtonVariant variant;
+  final BroumyButtonSize size;
   final bool loading;
 
   /// Optional leading icon (e.g. `Icons.arrow_forward`).
@@ -50,7 +50,7 @@ class GovCzButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final interactive = onPressed != null && !loading;
-    final height = size == GovCzButtonSize.lg ? 56.0 : 48.0;
+    final height = size == BroumyButtonSize.lg ? 56.0 : 48.0;
 
     final Widget button = _buildButton(
       context,
@@ -74,7 +74,7 @@ class GovCzButton extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final label = loading
         ? SizedBox.square(
-            dimension: size == GovCzButtonSize.lg ? 24 : 20,
+            dimension: size == BroumyButtonSize.lg ? 24 : 20,
             child: const CircularProgressIndicator(
               strokeWidth: 2.4,
               color: Colors.white,
@@ -85,68 +85,68 @@ class GovCzButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(icon, size: 20),
-                  const SizedBox(width: GovCzSpacing.sm),
+                  const SizedBox(width: BroumySpacing.sm),
                   child,
                 ],
               )
             : child);
 
     switch (variant) {
-      case GovCzButtonVariant.primary:
+      case BroumyButtonVariant.primary:
         return _styled(
           context,
           interactive: interactive,
           height: height,
-          background: GovCzColors.primary,
-          foreground: GovCzColors.textOnPrimary,
-          hoverBackground: GovCzColors.primaryHover,
+          background: BroumyColors.primary,
+          foreground: BroumyColors.textOnPrimary,
+          hoverBackground: BroumyColors.primaryHover,
           borderColor: null,
           child: label,
         );
-      case GovCzButtonVariant.secondary:
+      case BroumyButtonVariant.secondary:
         return _styled(
           context,
           interactive: interactive,
           height: height,
-          background: GovCzColors.secondary,
-          foreground: GovCzColors.textOnSecondary,
-          hoverBackground: GovCzColors.secondaryHover,
+          background: BroumyColors.secondary,
+          foreground: BroumyColors.textOnSecondary,
+          hoverBackground: BroumyColors.secondaryHover,
           borderColor: null,
           child: label,
         );
-      case GovCzButtonVariant.outline:
+      case BroumyButtonVariant.outline:
         return _styled(
           context,
           interactive: interactive,
           height: height,
           background: Colors.transparent,
-          foreground: GovCzColors.primary,
+          foreground: BroumyColors.primary,
           hoverBackground: isDark
               ? const Color(0x1F004B87)
-              : GovCzColors.primaryContainer,
-          borderColor: GovCzColors.primary,
+              : BroumyColors.primaryContainer,
+          borderColor: BroumyColors.primary,
           child: label,
         );
-      case GovCzButtonVariant.ghost:
+      case BroumyButtonVariant.ghost:
         return _styled(
           context,
           interactive: interactive,
           height: height,
           background: Colors.transparent,
-          foreground: GovCzColors.primary,
+          foreground: BroumyColors.primary,
           hoverBackground: isDark
               ? const Color(0x1F004B87)
-              : GovCzColors.primaryContainer,
+              : BroumyColors.primaryContainer,
           borderColor: null,
           child: label,
         );
-      case GovCzButtonVariant.destructive:
+      case BroumyButtonVariant.destructive:
         return _styled(
           context,
           interactive: interactive,
           height: height,
-          background: GovCzColors.error,
-          foreground: GovCzColors.textOnPrimary,
+          background: BroumyColors.error,
+          foreground: BroumyColors.textOnPrimary,
           hoverBackground: const Color(0xFFB01018),
           borderColor: null,
           child: label,
@@ -169,7 +169,7 @@ class GovCzButton extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(GovCzRadii.md),
+          borderRadius: BorderRadius.circular(BroumyRadii.md),
           border: borderColor == null
               ? null
               : Border.all(color: borderColor, width: 2),
@@ -255,27 +255,27 @@ class _FocusableButtonState extends State<_FocusableButton> {
         onTap: widget.enabled ? widget.onPressed : null,
         onHighlightChanged: (v) => setState(() => _pressed = v),
         focusNode: null,
-        borderRadius: BorderRadius.circular(GovCzRadii.md),
+        borderRadius: BorderRadius.circular(BroumyRadii.md),
         child: Container(
           height: widget.height,
           width: double.infinity,
           decoration: BoxDecoration(
             color: bg,
-            borderRadius: BorderRadius.circular(GovCzRadii.md),
+            borderRadius: BorderRadius.circular(BroumyRadii.md),
             border: showFocus
                 ? Border.all(
-                    color: GovCzColors.focusRing,
-                    width: GovCzA11y.focusThickness,
+                    color: BroumyColors.focusRing,
+                    width: BroumyA11y.focusThickness,
                   )
                 : null,
           ),
-          padding: const EdgeInsets.symmetric(horizontal: GovCzSpacing.xl),
+          padding: const EdgeInsets.symmetric(horizontal: BroumySpacing.xl),
           child: Center(
             child: DefaultTextStyle.merge(
               style: TextStyle(
                 color: widget.foreground,
-                fontSize: GovCzType.base,
-                fontWeight: GovCzType.semibold,
+                fontSize: BroumyType.base,
+                fontWeight: BroumyType.semibold,
               ),
               child: widget.child,
             ),

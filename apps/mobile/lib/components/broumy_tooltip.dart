@@ -1,4 +1,4 @@
-/// Accessible gov.cz tooltip.
+/// Accessible Broumy tooltip.
 ///
 /// Wraps a widget with a delay-activated tooltip. Includes an optional
 /// explicit Semantics label so screen readers announce it independently of
@@ -7,15 +7,15 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzTooltip extends StatelessWidget {
-  const GovCzTooltip({
+class BroumyTooltip extends StatelessWidget {
+  const BroumyTooltip({
     super.key,
     required this.message,
     required this.child,
     this.semanticLabel,
-    this.waitDuration = GovCzMotion.short,
+    this.waitDuration = BroumyMotion.short,
   });
 
   /// Tooltip text shown on long-press/hover.
@@ -34,12 +34,12 @@ class GovCzTooltip extends StatelessWidget {
       message: message,
       waitDuration: waitDuration,
       decoration: BoxDecoration(
-        color: GovCzColors.gray900,
-        borderRadius: BorderRadius.circular(GovCzRadii.sm),
+        color: BroumyColors.gray900,
+        borderRadius: BorderRadius.circular(BroumyRadii.sm),
       ),
       textStyle: const TextStyle(
-        color: GovCzColors.textOnPrimary,
-        fontSize: GovCzType.sm,
+        color: BroumyColors.textOnPrimary,
+        fontSize: BroumyType.sm,
       ),
       child: child,
     );

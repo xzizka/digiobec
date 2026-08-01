@@ -1,69 +1,86 @@
 :root {
-  /* Colors - gov.cz design system inspired */
-  --color-primary: #0055A4;
-  --color-primary-light: #1E73BE;
-  --color-primary-dark: #003D7A;
-  --color-primary-hover: #004480;
-  --color-primary-active: #003D7A;
+  /* Colors - Broumy design system (mirror of mobile/lib/theme/broumy_tokens.dart)
+     Palette extracted from the official site broumy.cz (Galileo/LEGO skin).
+     Single source of truth: mobile tokens; sync check in CI. */
 
-  --color-secondary: #D71920;
-  --color-secondary-light: #E03E3E;
-  --color-secondary-dark: #A01418;
+  /* Brand */
+  --color-primary: #117B30;
+  --color-primary-hover: #188739;
+  --color-primary-active: #0E5E24;
+  --color-primary-dark: #0E5E24;
+  --color-primary-light: #1E73BE;
+  --color-primary-container: #E3F0E6;
+  --color-on-primary: #FFFFFF;
+
+  --color-secondary: #184461;
+  --color-secondary-hover: #36658A;
+  --color-secondary-container: #E1ECF4;
+  --color-on-secondary: #FFFFFF;
+
+  --color-accent: #36658A;
+
+  /* Semantics */
+  --color-info: #17A2B8;
+  --color-info-light: #1FC8E3;
+  --color-info-dark: #117A8B;
+  --color-info-container: #E0F4F7;
 
   --color-success: #28A745;
   --color-success-light: #34CE57;
   --color-success-dark: #1E7E34;
+  --color-success-container: #DFF3E3;
 
-  --color-warning: #FFC107;
+  --color-warning: #B8860B;
   --color-warning-light: #FFCA28;
-  --color-warning-dark: #FFA000;
+  --color-warning-dark: #856404;
+  --color-warning-container: #FFF3CD;
 
   --color-error: #DC3545;
   --color-error-light: #E53E3E;
-  --color-error-dark: #C82333;
-
-  --color-info: #17A2B8;
-  --color-info-light: #1FC8E3;
-  --color-info-dark: #117A8B;
+  --color-error-dark: #B01018;
+  --color-error-container: #F8D7DA;
 
   /* Neutral colors */
   --color-white: #FFFFFF;
   --color-black: #000000;
 
-  --color-gray-50: #F8F9FA;
-  --color-gray-100: #F1F3F5;
-  --color-gray-200: #E9ECEF;
-  --color-gray-300: #DEE2E6;
-  --color-gray-400: #CED4DA;
-  --color-gray-500: #ADB5BD;
-  --color-gray-600: #868E96;
-  --color-gray-700: #6C757D;
-  --color-gray-800: #495057;
-  --color-gray-900: #343A40;
+  --color-gray-50: #FBFBF8;
+  --color-gray-100: #F2EFF6;
+  --color-gray-200: #EBEAE1;
+  --color-gray-300: #D7D4DB;
+  --color-gray-400: #C9C5BD;
+  --color-gray-500: #818182;
+  --color-gray-600: #6C757D;
+  --color-gray-700: #4A4740;
+  --color-gray-800: #34312D;
+  --color-gray-900: #3D3D3D;
 
-  /* Semantic colors */
+  /* Semantic aliases */
   --color-background: var(--color-gray-50);
   --color-surface: var(--color-white);
+  --color-surface-muted: var(--color-gray-50);
+  --color-surface-container: var(--color-gray-100);
   --color-surface-hover: var(--color-gray-100);
   --color-surface-active: var(--color-gray-200);
 
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-700);
+  --color-text-primary: #3D3D3D;
+  --color-text-secondary: #4A4740;
   --color-text-tertiary: var(--color-gray-500);
   --color-text-on-primary: var(--color-white);
   --color-text-on-secondary: var(--color-white);
   --color-text-on-error: var(--color-white);
   --color-text-on-success: var(--color-white);
-  --color-text-on-warning: var(--color-black);
+  --color-text-on-warning: var(--color-white);
   --color-text-on-info: var(--color-white);
+  --color-text-link: var(--color-primary);
 
-  --color-border: var(--color-gray-300);
+  --color-border: #C9C5BD;
   --color-border-light: var(--color-gray-200);
-  --color-border-dark: var(--color-gray-400);
+  --color-border-dark: #4A4740;
   --color-border-focus: var(--color-primary);
 
-  --color-focus: var(--color-primary);
-  --color-focus-ring: rgba(0, 85, 164, 0.25);
+  --color-focus: #36658A;
+  --color-focus-ring: rgba(54, 101, 138, 0.25);
 
   /* Shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -73,7 +90,7 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
 
   /* Typography */
-  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-base: 'Fira Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
 
   --font-size-xs: 0.75rem;    /* 12px */
@@ -136,10 +153,12 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--color-gray-900);
-    --color-surface: var(--color-gray-800);
-    --color-surface-hover: var(--color-gray-700);
-    --color-surface-active: var(--color-gray-600);
+    --color-background: #141414;
+    --color-surface: #1E1E1E;
+    --color-surface-muted: #1E1E1E;
+    --color-surface-container: #2A2D31;
+    --color-surface-hover: #2A2D31;
+    --color-surface-active: #3A3D42;
 
     --color-text-primary: var(--color-gray-50);
     --color-text-secondary: var(--color-gray-300);
@@ -149,18 +168,18 @@
     --color-border-light: var(--color-gray-700);
     --color-border-dark: var(--color-gray-500);
 
-    --color-focus-ring: rgba(30, 115, 190, 0.4);
+    --color-focus-ring: rgba(54, 101, 138, 0.4);
   }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   :root {
-    --color-primary: #003D7A;
-    --color-secondary: #A01418;
+    --color-primary: #0E5E24;
+    --color-secondary: #36658A;
     --color-success: #1E7E34;
-    --color-warning: #FFA000;
-    --color-error: #C82333;
+    --color-warning: #856404;
+    --color-error: #B01018;
     --color-border: currentColor;
     --color-focus: #0000FF;
   }

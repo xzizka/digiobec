@@ -20,6 +20,7 @@
 | CI/CD: GitHub Actions + Fastlane | Free for public repos, good Flutter/Android/iOS support | 2025-07-31 |
 | Target: obec do 1 500 obyvatel (I. typu), bez rozšířené působnosti | Portál je pro malou obec; agendy ORP (občanky/pasy, řidičáky, registr vozidel, živnostenská agenda, OSPOD, stavební povolení aj.) mimo rozsah – přes portál občana / Czech POINT | 2026-08-01 |
 | Demo formulář: "Žádost o informace" (InfZ) | Univerzální úkon každé obce; nahradil "Výpis z rejstříku" (živnostenský = ORP agenda) | 2026-08-01 |
+| Design system: **Broumy** (ne gov.cz) | Paleta + názvy z živé broumy.cz; komponenty `broumy_*`/`Broumy*`, Fira Sans; gov.cz design byl jen výchozí bod | 2026-08-01 |
 
 ### Research Completed
 - [x] Czech eGov integrations (eIdentita, ISDS, ISVS, payments, accessibility law)
@@ -36,7 +37,7 @@
 | Plan | Wave | Status | Summary |
 |------|------|--------|---------|
 | 01-01: Walking Skeleton | 1 | ✅ **DONE** | [01-01-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-01-SUMMARY.md) |
-| 01-02: Design System Foundation | 1 | ⏳ PENDING | — |
+| 01-02: Design System Foundation | 1 | ✅ **DONE** | [01-02-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-02-SUMMARY.md) |
 | 01-03: Guest Submission Core | 2 | ⏳ PENDING | — |
 | 01-04: RÚIAN + Czech POINT | 2 | ⏳ PENDING | — |
 | 01-05: PDF Confirmation | 3 | ⏳ PENDING | — |
@@ -44,11 +45,11 @@
 | 01-07: Citizen Web MVP | 4 | ⏳ PENDING | — |
 
 ### Next Actions
-1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 1`** — Execute Plan 02 (Design System Foundation) in parallel with Plan 01 (already done)
-2. Then Wave 2: Plans 03 + 04
-3. Then Wave 3: Plans 05 + 06
-4. Then Wave 4: Plan 07 (Citizen Web MVP)
-5. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
+1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 2`** — Execute Plans 03 (Guest Submission Core) + 04 (RÚIAN + Czech POINT)
+2. Then Wave 3: Plans 05 + 06
+3. Then Wave 4: Plan 07 (Citizen Web MVP)
+4. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
+5. **Follow-ups (Plan 02):** `flutter test --coverage > 80%` gating; Storybook (React) / Widgetbook (Flutter) docs; `flutter drive` axe-core web a11y v CI
 
 ### Open Questions
 - [ ] Citizen Portal federation API spec (DIA/NAKIT) – need contact
@@ -72,6 +73,7 @@
 ├── phases/01-foundation-guest-mode/
 │   ├── 01-01-PLAN.md ... 01-07-PLAN.md
 │   ├── 01-01-SUMMARY.md ✅
+│   ├── 01-02-SUMMARY.md ✅
 │   └── SKELETON.md
 └── STATE.md            # This file
 ```
@@ -82,3 +84,7 @@
 - `a226c1d` — Remove duplicate top-level dirs, keep monorepo apps/ structure
 - `00ac7ea` — Remove admin-web/dist build artifact
 - `ee57358` — **Plan 01 complete: Walking Skeleton**
+- `726b64b` — Scope to small municipality (no ORP) + citizen-web plan
+- `9f1b824` — Plan 02: Flutter theme foundation (tokens + ThemeData)
+- `7d794dc` — Plan 02: Flutter components (10) + widget tests
+- *(next)* — **Plan 02 complete: Broumy design system — Flutter + React components, palette, a11y CI**

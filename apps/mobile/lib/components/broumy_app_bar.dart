@@ -1,4 +1,4 @@
-/// gov.cz application bar.
+/// Broumy application bar.
 ///
 /// Primary-colored header with title, optional back button and actions.
 /// Keeps the brand identity and a high-contrast white on blue pairing.
@@ -6,10 +6,10 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const GovCzAppBar({
+class BroumyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const BroumyAppBar({
     super.key,
     required this.title,
     this.actions,
@@ -30,15 +30,15 @@ class GovCzAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: GovCzColors.primary,
-      foregroundColor: GovCzColors.textOnPrimary,
-      elevation: elevated ? GovCzElevation.sm : GovCzElevation.none,
+      backgroundColor: BroumyColors.primary,
+      foregroundColor: BroumyColors.textOnPrimary,
+      elevation: elevated ? BroumyElevation.sm : BroumyElevation.none,
       title: Text(
         title,
         style: const TextStyle(
-          fontSize: GovCzType.lg,
-          fontWeight: GovCzType.semibold,
-          color: GovCzColors.textOnPrimary,
+          fontSize: BroumyType.lg,
+          fontWeight: BroumyType.semibold,
+          color: BroumyColors.textOnPrimary,
         ),
       ),
       leading: showBackButton

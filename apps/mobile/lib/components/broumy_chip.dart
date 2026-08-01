@@ -1,4 +1,4 @@
-/// gov.cz filter chip.
+/// Broumy filter chip.
 ///
 /// Selectable/removable chip with visible selected state, focus ring and
 /// contrast-safe label colors from tokens.
@@ -6,10 +6,10 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzChip extends StatelessWidget {
-  const GovCzChip({
+class BroumyChip extends StatelessWidget {
+  const BroumyChip({
     super.key,
     required this.label,
     this.selected = false,
@@ -33,20 +33,20 @@ class GovCzChip extends StatelessWidget {
       selected: selected,
       onSelected: interactive ? onSelected : null,
       showCheckmark: showCheckmark,
-      selectedColor: GovCzColors.primaryContainer,
-      checkmarkColor: GovCzColors.primary,
-      backgroundColor: GovCzColors.surfaceMuted,
+      selectedColor: BroumyColors.primaryContainer,
+      checkmarkColor: BroumyColors.primary,
+      backgroundColor: BroumyColors.surfaceMuted,
       side: BorderSide(
-        color: selected ? GovCzColors.primary : GovCzColors.border,
+        color: selected ? BroumyColors.primary : BroumyColors.border,
         width: selected ? 2 : 1,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(GovCzRadii.pill),
+        borderRadius: BorderRadius.circular(BroumyRadii.pill),
       ),
       labelStyle: TextStyle(
-        color: selected ? GovCzColors.primary : GovCzColors.textPrimary,
-        fontSize: GovCzType.sm,
-        fontWeight: selected ? GovCzType.semibold : GovCzType.regular,
+        color: selected ? BroumyColors.primary : BroumyColors.textPrimary,
+        fontSize: BroumyType.sm,
+        fontWeight: selected ? BroumyType.semibold : BroumyType.regular,
       ),
     );
 

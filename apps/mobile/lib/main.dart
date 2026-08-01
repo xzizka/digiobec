@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'core/constants/app_constants.dart';
 import 'core/router/app_router.dart';
-import 'core/theme/app_theme.dart';
+import 'theme/broumy_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +26,8 @@ class MunicipalPortalApp extends StatelessWidget {
     return MaterialApp.router(
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: BroumyTheme.light,
+      darkTheme: BroumyTheme.dark,
       themeMode: ThemeMode.system,
       routerConfig: appRouter,
       localizationsDelegates: context.localizationDelegates,

@@ -1,15 +1,15 @@
-/// Accessible gov.cz modal dialog.
+/// Accessible Broumy modal dialog.
 ///
 /// Non-dismissible dialog with focus trap semantics, a title with heading
-/// role and action buttons. Use [GovCzDialog.show] to display it.
+/// role and action buttons. Use [BroumyDialog.show] to display it.
 library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzDialog extends StatelessWidget {
-  const GovCzDialog({
+class BroumyDialog extends StatelessWidget {
+  const BroumyDialog({
     super.key,
     required this.title,
     required this.content,
@@ -39,7 +39,7 @@ class GovCzDialog extends StatelessWidget {
     return showDialog<T>(
       context: context,
       barrierDismissible: dismissible,
-      builder: (_) => GovCzDialog(
+      builder: (_) => BroumyDialog(
         title: title,
         content: content,
         actions: actions,
@@ -53,16 +53,16 @@ class GovCzDialog extends StatelessWidget {
     return PopScope(
       canPop: dismissible,
       child: AlertDialog(
-        backgroundColor: GovCzColors.surface,
+        backgroundColor: BroumyColors.surface,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(GovCzRadii.lg),
+          borderRadius: BorderRadius.circular(BroumyRadii.lg),
         ),
         title: Text(
           title,
           style: const TextStyle(
-            color: GovCzColors.textPrimary,
-            fontSize: GovCzType.xl,
-            fontWeight: GovCzType.semibold,
+            color: BroumyColors.textPrimary,
+            fontSize: BroumyType.xl,
+            fontWeight: BroumyType.semibold,
           ),
         ),
         content: content,

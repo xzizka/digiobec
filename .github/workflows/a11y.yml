@@ -1,0 +1,62 @@
+name: A11y & Token Sync
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  token-sync:
+    name: Token Sync (Flutter <-> CSS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Verify design token sync
+        run: node scripts/check-token-sync.mjs
+
+  admin-web-a11y:
+    name: Admin Web A11y (axe-core)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/admin-web
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run axe-core WCAG 2.1 AA tests
+        run: npm run test
+
+  mobile-a11y:
+    name: Mobile A11y (widget tests + semantics)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.8'
+          channel: 'stable'
+          cache: true
+      - name: Get dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Run tests (incl. a11y/semantics)
+        run: flutter test

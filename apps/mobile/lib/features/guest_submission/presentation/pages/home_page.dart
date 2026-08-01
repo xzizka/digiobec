@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/constants/app_constants.dart';
-import '../../../../core/theme/app_theme.dart';
+import '../../../../theme/broumy_tokens.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -135,8 +135,8 @@ class _HomePageState extends State<HomePage> {
                             ? Icons.check_circle
                             : Icons.error,
                         color: _healthStatus.contains('UP') || _healthStatus.contains('Operational')
-                            ? AppTheme.successColor
-                            : AppTheme.errorColor,
+                            ? BroumyColors.success
+                            : BroumyColors.error,
                         size: 24,
                       ),
                       const SizedBox(width: 12),

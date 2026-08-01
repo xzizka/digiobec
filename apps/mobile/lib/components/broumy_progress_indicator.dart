@@ -1,4 +1,4 @@
-/// gov.cz progress indicators.
+/// Broumy progress indicators.
 ///
 /// Linear and circular loaders themed with the primary token. Deterministic
 /// variants expose progress values for accessibility.
@@ -6,15 +6,15 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzProgressIndicator extends StatelessWidget {
-  const GovCzProgressIndicator({
+class BroumyProgressIndicator extends StatelessWidget {
+  const BroumyProgressIndicator({
     super.key,
     this.linear = true,
     this.value,
     this.label,
-    this.color = GovCzColors.primary,
+    this.color = BroumyColors.primary,
     this.strokeWidth,
   });
 
@@ -39,7 +39,7 @@ class GovCzProgressIndicator extends StatelessWidget {
           ? LinearProgressIndicator(
               value: value,
               color: color,
-              backgroundColor: GovCzColors.gray200,
+              backgroundColor: BroumyColors.gray200,
               minHeight: strokeWidth ?? 6,
             )
           : SizedBox.square(

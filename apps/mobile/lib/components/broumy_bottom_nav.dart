@@ -1,4 +1,4 @@
-/// gov.cz bottom navigation bar.
+/// Broumy bottom navigation bar.
 ///
 /// Material 3 NavigationBar wired to the token palette with a primary
 /// indicator, 48px targets and selected-state labels for screen readers.
@@ -6,10 +6,10 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-class GovCzBottomNavItem {
-  const GovCzBottomNavItem({
+class BroumyBottomNavItem {
+  const BroumyBottomNavItem({
     required this.icon,
     required this.selectedIcon,
     required this.label,
@@ -20,15 +20,15 @@ class GovCzBottomNavItem {
   final String label;
 }
 
-class GovCzBottomNav extends StatelessWidget {
-  const GovCzBottomNav({
+class BroumyBottomNav extends StatelessWidget {
+  const BroumyBottomNav({
     super.key,
     required this.items,
     required this.selectedIndex,
     required this.onDestinationSelected,
   });
 
-  final List<GovCzBottomNavItem> items;
+  final List<BroumyBottomNavItem> items;
   final int selectedIndex;
   final ValueChanged<int> onDestinationSelected;
 
@@ -37,8 +37,8 @@ class GovCzBottomNav extends StatelessWidget {
     return NavigationBar(
       selectedIndex: selectedIndex,
       onDestinationSelected: onDestinationSelected,
-      backgroundColor: GovCzColors.surface,
-      indicatorColor: GovCzColors.primaryContainer,
+      backgroundColor: BroumyColors.surface,
+      indicatorColor: BroumyColors.primaryContainer,
       height: 68,
       destinations: [
         for (final item in items)

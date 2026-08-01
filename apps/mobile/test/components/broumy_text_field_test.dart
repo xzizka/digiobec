@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:municipal_portal/components/govcz_text_field.dart';
-import 'package:municipal_portal/theme/govcz_theme.dart';
+import 'package:municipal_portal/components/broumy_text_field.dart';
+import 'package:municipal_portal/theme/broumy_theme.dart';
 
 void main() {
   Widget wrap(Widget child) => MaterialApp(
-        theme: GovCzTheme.light,
+        theme: BroumyTheme.light,
         home: Scaffold(body: Center(child: child)),
       );
 
-  group('GovCzTextField', () {
+  group('BroumyTextField', () {
     testWidgets('renders label and hint', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(
+      await tester.pumpWidget(wrap(BroumyTextField(
         label: 'Jméno',
         hintText: 'Zadejte jméno',
       )));
@@ -21,14 +21,14 @@ void main() {
     });
 
     testWidgets('accepts typed input', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(label: 'Email')));
+      await tester.pumpWidget(wrap(BroumyTextField(label: 'Email')));
 
       await tester.enterText(find.byType(TextField), 'test@obec.cz');
       expect(find.text('test@obec.cz'), findsOneWidget);
     });
 
     testWidgets('shows error text with error styling', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(
+      await tester.pumpWidget(wrap(BroumyTextField(
         label: 'Telefon',
         errorText: 'Neplatný formát čísla',
       )));
@@ -37,7 +37,7 @@ void main() {
     });
 
     testWidgets('is disabled when enabled=false', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(
+      await tester.pumpWidget(wrap(BroumyTextField(
         label: 'Zamčené pole',
         enabled: false,
       )));
@@ -47,7 +47,7 @@ void main() {
     });
 
     testWidgets('renders prefix icon', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(
+      await tester.pumpWidget(wrap(BroumyTextField(
         label: 'IČO',
         prefixIcon: Icons.business,
       )));
@@ -56,7 +56,7 @@ void main() {
     });
 
     testWidgets('exposes text field role in semantics', (tester) async {
-      await tester.pumpWidget(wrap(GovCzTextField(label: 'Adresa')));
+      await tester.pumpWidget(wrap(BroumyTextField(label: 'Adresa')));
 
       final semantics = tester.getSemantics(find.byType(TextField));
       expect(semantics.flagsCollection.isTextField, isTrue);
@@ -64,7 +64,7 @@ void main() {
 
     testWidgets('onChanged fires with current value', (tester) async {
       String? last;
-      await tester.pumpWidget(wrap(GovCzTextField(
+      await tester.pumpWidget(wrap(BroumyTextField(
         label: 'Poznámka',
         onChanged: (v) => last = v,
       )));

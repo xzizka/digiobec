@@ -1,4 +1,4 @@
-/// Accessible gov.cz card.
+/// Accessible Broumy card.
 ///
 /// Variants: elevated, outlined, filled. All variants keep semantic regions,
 /// a proper heading hierarchy and full text contrast via tokens.
@@ -6,23 +6,23 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '../theme/govcz_tokens.dart';
+import '../theme/broumy_tokens.dart';
 
-enum GovCzCardVariant { elevated, outlined, filled }
+enum BroumyCardVariant { elevated, outlined, filled }
 
-class GovCzCard extends StatelessWidget {
-  const GovCzCard({
+class BroumyCard extends StatelessWidget {
+  const BroumyCard({
     super.key,
     required this.child,
-    this.variant = GovCzCardVariant.elevated,
+    this.variant = BroumyCardVariant.elevated,
     this.title,
     this.onTap,
-    this.padding = const EdgeInsets.all(GovCzSpacing.xl),
+    this.padding = const EdgeInsets.all(BroumySpacing.xl),
     this.semanticLabel,
   });
 
   final Widget child;
-  final GovCzCardVariant variant;
+  final BroumyCardVariant variant;
 
   /// Optional card heading; rendered with a stable heading role.
   final String? title;
@@ -38,17 +38,17 @@ class GovCzCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final Color background = switch (variant) {
-      GovCzCardVariant.elevated => GovCzColors.surface,
-      GovCzCardVariant.outlined => GovCzColors.surface,
-      GovCzCardVariant.filled => isDark
+      BroumyCardVariant.elevated => BroumyColors.surface,
+      BroumyCardVariant.outlined => BroumyColors.surface,
+      BroumyCardVariant.filled => isDark
           ? const Color(0xFF1E1E1E)
-          : GovCzColors.surfaceMuted,
+          : BroumyColors.surfaceMuted,
     };
 
     final BoxDecoration decoration = switch (variant) {
-      GovCzCardVariant.elevated => BoxDecoration(
+      BroumyCardVariant.elevated => BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(GovCzRadii.lg),
+          borderRadius: BorderRadius.circular(BroumyRadii.lg),
           boxShadow: const [
             BoxShadow(
               color: Color(0x1A000000),
@@ -57,14 +57,14 @@ class GovCzCard extends StatelessWidget {
             ),
           ],
         ),
-      GovCzCardVariant.outlined => BoxDecoration(
+      BroumyCardVariant.outlined => BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(GovCzRadii.lg),
-          border: Border.all(color: GovCzColors.borderStrong, width: 1),
+          borderRadius: BorderRadius.circular(BroumyRadii.lg),
+          border: Border.all(color: BroumyColors.borderStrong, width: 1),
         ),
-      GovCzCardVariant.filled => BoxDecoration(
+      BroumyCardVariant.filled => BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(GovCzRadii.lg),
+          borderRadius: BorderRadius.circular(BroumyRadii.lg),
         ),
     };
 
@@ -78,12 +78,12 @@ class GovCzCard extends StatelessWidget {
             Text(
               title!,
               style: const TextStyle(
-                color: GovCzColors.textPrimary,
-                fontSize: GovCzType.lg,
-                fontWeight: GovCzType.semibold,
+                color: BroumyColors.textPrimary,
+                fontSize: BroumyType.lg,
+                fontWeight: BroumyType.semibold,
               ),
             ),
-            const SizedBox(height: GovCzSpacing.lg),
+            const SizedBox(height: BroumySpacing.lg),
           ],
           child,
         ],
@@ -99,7 +99,7 @@ class GovCzCard extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 onTap: onTap,
-                borderRadius: BorderRadius.circular(GovCzRadii.lg),
+                borderRadius: BorderRadius.circular(BroumyRadii.lg),
                 child: Container(decoration: decoration, child: content),
               ),
             ),
