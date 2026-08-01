@@ -1,0 +1,94 @@
+{
+  "common": {
+    "appName": "Citizen Portal",
+    "loading": "Loading…",
+    "error": "Error",
+    "retry": "Try again",
+    "back": "Back",
+    "close": "Close",
+    "submit": "Submit",
+    "yes": "Yes",
+    "no": "No",
+    "requiredField": "Required field",
+    "skipToContent": "Skip to main content",
+    "language": "Language",
+    "notFound": "Page not found"
+  },
+  "navigation": {
+    "catalog": "Request catalog",
+    "tracking": "Track submission",
+    "accessibility": "Accessibility"
+  },
+  "catalog": {
+    "title": "Request catalog",
+    "subtitle": "Pick a request to handle online, without visiting the municipal office.",
+    "empty": "No forms are currently available.",
+    "errorState": "Could not load the form catalog.",
+    "viewForm": "Submit request",
+    "department": "Department"
+  },
+  "submission": {
+    "backToCatalog": "Back to catalog",
+    "loadingForm": "Loading form…",
+    "formNotFound": "Form not found.",
+    "requiredMarker": "*",
+    "submit": "Submit request",
+    "submitting": "Submitting…",
+    "validationError": "The form has errors. Please correct the highlighted fields.",
+    "submitError": "The submission could not be sent. Please try again.",
+    "successTitle": "Request submitted successfully",
+    "successBody": "Your request has been received for processing. Please keep your tracking code.",
+    "trackingCodeLabel": "Tracking code",
+    "downloadPdf": "Download confirmation (PDF)",
+    "trackSubmission": "Track submission status",
+    "submitAnother": "Submit another request",
+    "conditionalHint": "This field is shown based on your previous answer.",
+    "addressLookupLabel": "Search address (RÚIAN)",
+    "addressLookupPlaceholder": "Start typing an address…",
+    "addressSearching": "Searching…"
+  },
+  "tracking": {
+    "title": "Track submission status",
+    "subtitle": "Enter the tracking code you received when you submitted your request.",
+    "inputLabel": "Tracking code",
+    "inputPlaceholder": "e.g. 018f2c3a-1a2b-...",
+    "lookupButton": "Check status",
+    "notFoundError": "No submission was found for this tracking code. Please check it and try again.",
+    "genericError": "Could not check the submission status. Please try again.",
+    "formLabel": "Request type",
+    "submittedAtLabel": "Submitted on",
+    "statusHeading": "Processing progress",
+    "downloadPdf": "Download confirmation (PDF)",
+    "status": {
+      "SUBMITTED": "Submitted",
+      "PROCESSING": "Processing",
+      "NEEDS_INFO": "Needs more information",
+      "COMPLETED": "Completed",
+      "REJECTED": "Rejected"
+    }
+  },
+  "footer": {
+    "contactTitle": "Contact",
+    "contactAddress": "Municipal Office, Náves 1, 551 11 Broumy, Czech Republic",
+    "contactEmail": "podatelna@broumy.cz",
+    "contactPhone": "+420 731 000 000",
+    "linksTitle": "Links",
+    "accessibility": "Accessibility statement",
+    "tracking": "Track submission status",
+    "copyright": "© {{year}} Municipality of Broumy. All rights reserved."
+  },
+  "accessibility": {
+    "title": "Accessibility statement",
+    "intro": "The Municipality of Broumy is committed to making its website accessible in accordance with Act No. 99/2019 Coll. on the accessibility of websites and mobile applications, which transposes Directive (EU) 2016/2102 of the European Parliament and of the Council into Czech law.",
+    "statusHeading": "Compliance status",
+    "statusBody": "This portal complies with Act No. 99/2019 Coll. and meets WCAG 2.1 level AA accessibility rules.",
+    "processedHeading": "Statement preparation",
+    "processedBody": "This statement was prepared on 1 August 2026. It was assessed using self-evaluation.",
+    "feedbackHeading": "Feedback and contact details",
+    "feedbackBody": "If you encounter any accessibility problem with this portal, please contact the designated person below.",
+    "contactPersonLabel": "Designated person",
+    "contactPersonValue": "Ing. Jana Klerková, podatelna@broumy.cz, +420 731 000 000",
+    "enforcementHeading": "Enforcement procedures",
+    "enforcementBody": "If the response to a notice or request submitted under Directive (EU) 2016/2102 is unsatisfactory, contact the Ministry of the Interior of the Czech Republic, eGovernment Department."
+  }
+}

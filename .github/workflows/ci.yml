@@ -93,10 +93,39 @@ jobs:
           name: admin-web-dist
           path: apps/admin-web/dist
 
+  citizen-web:
+    name: Citizen Web (React)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/citizen-web
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm run test
+      - name: Build
+        run: npm run build
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: citizen-web-dist
+          path: apps/citizen-web/dist
+
   integration:
     name: Integration Tests
     runs-on: ubuntu-latest
-    needs: [backend, mobile, admin-web]
+    needs: [backend, mobile, admin-web, citizen-web]
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK
@@ -134,6 +163,14 @@ jobs:
           npx serve -s dist -l 3000 &
           sleep 5
           curl -f http://localhost:3000 || exit 1
+      - name: Run Citizen Web
+        working-directory: ./apps/citizen-web
+        run: |
+          npm ci
+          npm run build
+          npx serve -s dist -l 5173 &
+          sleep 5
+          curl -f http://localhost:5173 || exit 1
       - name: Run Flutter Integration Tests
         working-directory: ./apps/mobile
         run: |

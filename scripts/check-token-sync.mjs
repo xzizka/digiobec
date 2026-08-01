@@ -9,7 +9,7 @@ const dart = readFileSync(
   'utf-8',
 );
 const cssRaw = readFileSync(
-  join(root, 'apps/admin-web/src/theme/broumy-tokens.css'),
+  join(root, 'packages/broumy-tokens/tokens.css'),
   'utf-8',
 );
 

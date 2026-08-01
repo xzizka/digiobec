@@ -1,5 +1,5 @@
 {
-  "name": "admin-web",
+  "name": "citizen-web",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -14,18 +14,12 @@
   },
   "dependencies": {
     "@digiobec/broumy-tokens": "*",
-    "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.15",
-    "@tanstack/react-table": "^8.21.3",
     "axios": "^1.7.4",
-    "clsx": "^2.1.1",
     "i18next": "^26.3.6",
     "i18next-browser-languagedetector": "^8.2.1",
-    "keycloak-js": "^26.2.4",
-    "lucide-react": "^0.427.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-hook-form": "^7.52.2",
     "react-i18next": "^17.0.11",
     "react-router-dom": "^6.26.1",
     "zod": "^3.23.8"

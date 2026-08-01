@@ -1,0 +1,94 @@
+{
+  "common": {
+    "appName": "Portál občana",
+    "loading": "Načítání…",
+    "error": "Chyba",
+    "retry": "Zkusit znovu",
+    "back": "Zpět",
+    "close": "Zavřít",
+    "submit": "Odeslat",
+    "yes": "Ano",
+    "no": "Ne",
+    "requiredField": "Povinné pole",
+    "skipToContent": "Přeskočit na hlavní obsah",
+    "language": "Jazyk",
+    "notFound": "Stránka nenalezena"
+  },
+  "navigation": {
+    "catalog": "Katalog žádostí",
+    "tracking": "Sledování stavu",
+    "accessibility": "Přístupnost"
+  },
+  "catalog": {
+    "title": "Katalog žádostí",
+    "subtitle": "Vyberte úkon, který chcete vyřídit, a podejte žádost bez nutnosti návštěvy úřadu.",
+    "empty": "Aktuálně nejsou k dispozici žádné formuláře.",
+    "errorState": "Nepodařilo se načíst katalog formulářů.",
+    "viewForm": "Podat žádost",
+    "department": "Agenda"
+  },
+  "submission": {
+    "backToCatalog": "Zpět na katalog",
+    "loadingForm": "Načítám formulář…",
+    "formNotFound": "Formulář nebyl nalezen.",
+    "requiredMarker": "*",
+    "submit": "Odeslat žádost",
+    "submitting": "Odesílám…",
+    "validationError": "Formulář obsahuje chyby. Opravte prosím zvýrazněná pole.",
+    "submitError": "Podání se nepodařilo odeslat. Zkuste to prosím znovu.",
+    "successTitle": "Žádost byla úspěšně odeslána",
+    "successBody": "Vaše žádost byla přijata ke zpracování. Uschovejte si prosím sledovací kód.",
+    "trackingCodeLabel": "Sledovací kód",
+    "downloadPdf": "Stáhnout potvrzení (PDF)",
+    "trackSubmission": "Sledovat stav podání",
+    "submitAnother": "Podat další žádost",
+    "conditionalHint": "Toto pole se zobrazuje na základě předchozí odpovědi.",
+    "addressLookupLabel": "Vyhledat adresu (RÚIAN)",
+    "addressLookupPlaceholder": "Začněte psát adresu…",
+    "addressSearching": "Vyhledávám…"
+  },
+  "tracking": {
+    "title": "Sledování stavu podání",
+    "subtitle": "Zadejte sledovací kód, který jste obdrželi při odeslání žádosti.",
+    "inputLabel": "Sledovací kód",
+    "inputPlaceholder": "např. 018f2c3a-1a2b-...",
+    "lookupButton": "Zjistit stav",
+    "notFoundError": "Podání s tímto sledovacím kódem nebylo nalezeno. Zkontrolujte prosím kód a zkuste to znovu.",
+    "genericError": "Stav podání se nepodařilo zjistit. Zkuste to prosím znovu.",
+    "formLabel": "Typ žádosti",
+    "submittedAtLabel": "Podáno dne",
+    "statusHeading": "Průběh vyřízení",
+    "downloadPdf": "Stáhnout potvrzení (PDF)",
+    "status": {
+      "SUBMITTED": "Podáno",
+      "PROCESSING": "Zpracovává se",
+      "NEEDS_INFO": "Čeká na doplnění",
+      "COMPLETED": "Vyřízeno",
+      "REJECTED": "Zamítnuto"
+    }
+  },
+  "footer": {
+    "contactTitle": "Kontakt",
+    "contactAddress": "Obecní úřad, Náves 1, 551 11 Broumy",
+    "contactEmail": "podatelna@broumy.cz",
+    "contactPhone": "+420 731 000 000",
+    "linksTitle": "Odkazy",
+    "accessibility": "Prohlášení o přístupnosti",
+    "tracking": "Sledování stavu podání",
+    "copyright": "© {{year}} Obec Broumy. Všechna práva vyhrazena."
+  },
+  "accessibility": {
+    "title": "Prohlášení o přístupnosti",
+    "intro": "Obec Broumy se zavazuje k zpřístupnění své internetové stránky v souladu se zákonem č. 99/2019 Sb., o přístupnosti internetových stránek a mobilních aplikací a o změně zákona č. 365/2000 Sb., o informačních systémech veřejné správy, ve znění pozdějších předpisů, které do právního řádu České republiky transponuje směrnici Evropského parlamentu a Rady (EU) 2016/2102.",
+    "statusHeading": "Stav souladu",
+    "statusBody": "Tento portál je v souladu se zákonem č. 99/2019 Sb. a splňuje pravidla přístupnosti WCAG verze 2.1, úroveň AA.",
+    "processedHeading": "Zpracování prohlášení",
+    "processedBody": "Toto prohlášení bylo vypracováno dne 1. srpna 2026. Prohlášení bylo posouzeno metodou vlastního posouzení.",
+    "feedbackHeading": "Zpětná vazba a kontaktní údaje",
+    "feedbackBody": "V případě, že se setkáte s jakýmkoli problémem přístupnosti tohoto portálu, kontaktujte prosím pověřenou osobu.",
+    "contactPersonLabel": "Pověřená osoba",
+    "contactPersonValue": "Ing. Jana Klerková, podatelna@broumy.cz, +420 731 000 000",
+    "enforcementHeading": "Postupy pro prosazování práva",
+    "enforcementBody": "V případě neuspokojivé odpovědi na oznámení nebo žádost zaslanou v souladu se směrnicí (EU) 2016/2102 kontaktujte Ministerstvo vnitra ČR, odbor eGovernmentu."
+  }
+}

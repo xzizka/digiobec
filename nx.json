@@ -70,6 +70,7 @@
     "admin-web": {
       "root": "apps/admin-web",
       "projectType": "application",
+      "tags": ["admin", "web"],
       "targets": {
         "build": {
           "command": "npm run build",
@@ -87,6 +88,31 @@
           "command": "npm run lint",
           "options": {
             "cwd": "apps/admin-web"
+          }
+        }
+      }
+    },
+    "citizen-web": {
+      "root": "apps/citizen-web",
+      "projectType": "application",
+      "tags": ["public", "web"],
+      "targets": {
+        "build": {
+          "command": "npm run build",
+          "options": {
+            "cwd": "apps/citizen-web"
+          }
+        },
+        "test": {
+          "command": "npm test",
+          "options": {
+            "cwd": "apps/citizen-web"
+          }
+        },
+        "lint": {
+          "command": "npm run lint",
+          "options": {
+            "cwd": "apps/citizen-web"
           }
         }
       }

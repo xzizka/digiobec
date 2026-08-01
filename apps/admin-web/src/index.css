@@ -1,5 +1,5 @@
-@import './theme/broumy-tokens.css';
-@import './theme/broumy-theme.css';
+@import '@digiobec/broumy-tokens/tokens.css';
+@import '@digiobec/broumy-tokens/theme.css';
 
 * {
   box-sizing: border-box;

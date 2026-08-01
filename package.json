@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "apps/admin-web"
+    "packages/broumy-tokens",
+    "apps/admin-web",
+    "apps/citizen-web"
   ],
   "scripts": {
     "lint": "npm run lint --workspaces --if-present",
@@ -11,6 +13,7 @@
     "test": "npm run test --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
     "dev:admin": "npm run dev --workspace=apps/admin-web",
+    "dev:citizen": "npm run dev --workspace=apps/citizen-web",
     "prepare": "husky install"
   },
   "devDependencies": {

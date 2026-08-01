@@ -1,7 +1,9 @@
 :root {
   /* Colors - Broumy design system (mirror of mobile/lib/theme/broumy_tokens.dart)
      Palette extracted from the official site broumy.cz (Galileo/LEGO skin).
-     Single source of truth: mobile tokens; sync check in CI. */
+     Single source of truth: mobile tokens; sync check in CI (scripts/check-token-sync.mjs).
+     This package (@digiobec/broumy-tokens) is the single shared copy consumed
+     by both apps/admin-web and apps/citizen-web - do not fork per-app copies. */
 
   /* Brand */
   --color-primary: #117B30;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portál občana - podání žádostí, sledování stavu a potvrzení bez nutnosti návštěvy úřadu" />
+    <meta name="theme-color" content="#117B30" />
+    <!--
+      T-07-02 (Tampering via XSS): restrictive CSP. connect-src 'self' covers
+      same-origin /api calls (proxied to the backend in dev, reverse-proxied
+      in production); no inline scripts are ever emitted by this app.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    />
+    <title>Portál občana</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

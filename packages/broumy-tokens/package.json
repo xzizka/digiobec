@@ -1,0 +1,14 @@
+{
+  "name": "@digiobec/broumy-tokens",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared Broumy design system CSS (tokens + component styles) - single source consumed by apps/admin-web and apps/citizen-web. Canonical color values live in apps/mobile/lib/theme/broumy_tokens.dart; scripts/check-token-sync.mjs verifies tokens.css stays in sync with it.",
+  "files": [
+    "tokens.css",
+    "theme.css"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./theme.css": "./theme.css"
+  }
+}
