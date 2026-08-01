@@ -5,6 +5,13 @@ export type BroumyCardVariant = 'elevated' | 'outlined' | 'filled';
 export interface BroumyCardProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
   children: ReactNode;
   title?: string;
+  /**
+   * Heading level rendered for `title` - callers must pick the level that
+   * keeps the page's heading order sequential (no skipped levels), since
+   * that is an axe-core / WCAG 2.1 AA failure otherwise.
+   * @default 'h3'
+   */
+  titleAs?: 'h2' | 'h3' | 'h4';
   /** @default 'elevated' */
   variant?: BroumyCardVariant;
   /** Optional click handler; makes the card a real `<button>`. */
@@ -26,6 +33,7 @@ const VARIANT_CLASS: Record<BroumyCardVariant, string> = {
 export function BroumyCard({
   children,
   title,
+  titleAs: TitleTag = 'h3',
   variant = 'elevated',
   onPress,
   className,
@@ -36,7 +44,7 @@ export function BroumyCard({
 
   const content = (
     <>
-      {title && <h3 className="broumy-card-title">{title}</h3>}
+      {title && <TitleTag className="broumy-card-title">{title}</TitleTag>}
       <div className="broumy-card-body">{children}</div>
     </>
   );

@@ -18,6 +18,7 @@ export function FormCard({ entry }: FormCardProps) {
   return (
     <BroumyCard
       title={title}
+      titleAs="h2"
       variant="elevated"
       onPress={() => navigate(`/form/${encodeURIComponent(entry.formKey)}`)}
       aria-label={`${title} - ${t('viewForm')}`}
