@@ -44,6 +44,7 @@ dependencies {
 
     // JSON
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.networknt:json-schema-validator:1.4.0")
 }
 
 tasks.withType<Test> {

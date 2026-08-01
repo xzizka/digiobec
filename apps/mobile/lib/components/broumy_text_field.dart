@@ -29,6 +29,8 @@ class BroumyTextField extends StatefulWidget {
     this.onChanged,
     this.autofillHints,
     this.initialValue,
+    this.minLines,
+    this.maxLines,
   }) : assert(controller == null || initialValue == null,
             'Provide either controller or initialValue, not both');
 
@@ -56,6 +58,8 @@ class BroumyTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final Iterable<String>? autofillHints;
   final String? initialValue;
+  final int? minLines;
+  final int? maxLines;
 
   @override
   State<BroumyTextField> createState() => _BroumyTextFieldState();
@@ -95,6 +99,8 @@ class _BroumyTextFieldState extends State<BroumyTextField> {
         enabled: widget.enabled,
         obscureText: widget.obscureText,
         maxLength: widget.maxLength,
+        minLines: widget.minLines,
+        maxLines: widget.maxLines ?? 1,
         textInputAction: widget.textInputAction,
         keyboardType: widget.keyboardType,
         autofillHints: widget.autofillHints,

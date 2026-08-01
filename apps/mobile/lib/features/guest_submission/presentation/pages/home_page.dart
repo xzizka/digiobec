@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton.icon(
                 icon: const Icon(Icons.description_outlined, size: 24),
                 label: Text('submitRequest'.tr()),
-                onPressed: () => context.go('/form/vypis-z-rejstriku'),
+                onPressed: () => context.go('/form/info-request'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 18),
                 ),

@@ -1,0 +1,28 @@
+{
+  "requesterName": {
+    "ui:widget": "text",
+    "ui:autofocus": true
+  },
+  "requesterContact": {
+    "ui:widget": "text"
+  },
+  "requestType": {
+    "ui:widget": "select"
+  },
+  "description": {
+    "ui:widget": "textarea"
+  },
+  "deliveryMethod": {
+    "ui:widget": "select"
+  },
+  "dateNeeded": {
+    "ui:widget": "date",
+    "ui:condition": {
+      "field": "requestType",
+      "value": "info-document"
+    }
+  },
+  "agreeTerms": {
+    "ui:widget": "checkbox"
+  }
+}

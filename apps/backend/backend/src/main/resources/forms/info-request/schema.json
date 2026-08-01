@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Žádost o informace",
+  "required": [
+    "requesterName",
+    "requesterContact",
+    "requestType",
+    "description",
+    "deliveryMethod",
+    "agreeTerms"
+  ],
+  "properties": {
+    "requesterName": {
+      "type": "string",
+      "title": "Jméno a příjmení",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "requesterContact": {
+      "type": "string",
+      "title": "Kontakt (e-mail nebo telefon)",
+      "minLength": 5,
+      "maxLength": 255
+    },
+    "requestType": {
+      "type": "string",
+      "enum": ["info-document", "info-reuse", "other"],
+      "title": "Typ žádosti"
+    },
+    "description": {
+      "type": "string",
+      "title": "Žádané informace",
+      "minLength": 10,
+      "maxLength": 5000
+    },
+    "deliveryMethod": {
+      "type": "string",
+      "enum": ["email", "isds", "mail"],
+      "title": "Způsob doručení"
+    },
+    "dateNeeded": {
+      "type": "string",
+      "format": "date",
+      "title": "Požadované datum (nepovinné)"
+    },
+    "agreeTerms": {
+      "type": "boolean",
+      "title": "Souhlasím se zpracováním osobních údajů",
+      "const": true
+    }
+  }
+}

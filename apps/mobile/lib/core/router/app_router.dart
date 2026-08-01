@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import '../../features/guest_submission/presentation/pages/home_page.dart';
+import '../../features/submission/presentation/submission_form_page.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -15,10 +16,7 @@ final appRouter = GoRouter(
       name: 'form',
       builder: (context, state) {
         final formId = state.pathParameters['formId']!;
-        return Placeholder(
-          key: Key('form-$formId'),
-          child: Center(child: Text('Form: $formId')),
-        );
+        return SubmissionFormPage(formKey: formId);
       },
     ),
     GoRoute(

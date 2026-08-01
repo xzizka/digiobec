@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: db/changelog/v1.0.0__init_schema.yaml
+  - include:
+      file: db/changelog/v1.1.0__submission_tracking_code.yaml
