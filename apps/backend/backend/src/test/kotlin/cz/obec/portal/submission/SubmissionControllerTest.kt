@@ -7,12 +7,18 @@ import cz.obec.portal.submission.domain.SubmissionStatus
 import cz.obec.portal.submission.service.SubmissionService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers
-import org.mockito.ArgumentMatchers.eq
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
+import org.mockito.kotlin.any
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.whenever
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.web.config.EnableSpringDataWebSupport
+import org.springframework.data.web.config.SpringDataJacksonConfiguration
+import org.springframework.data.web.config.SpringDataWebSettings
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -31,9 +37,19 @@ class SubmissionControllerTest {
 
     @BeforeEach
     fun setUp() {
-        submissionService = Mockito.mock(SubmissionService::class.java)
+        submissionService = mock(SubmissionService::class.java)
         val controller = cz.obec.portal.submission.api.SubmissionController(submissionService)
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build()
+        val settings = SpringDataWebSettings(EnableSpringDataWebSupport.PageSerializationMode.DIRECT)
+        val objectMapper: com.fasterxml.jackson.databind.ObjectMapper = Jackson2ObjectMapperBuilder()
+            .modules(
+                com.fasterxml.jackson.datatype.jsr310.JavaTimeModule(),
+                com.fasterxml.jackson.module.kotlin.KotlinModule.Builder().build(),
+                SpringDataJacksonConfiguration.PageModule(settings),
+            )
+            .build()
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+            .setMessageConverters(MappingJackson2HttpMessageConverter(objectMapper))
+            .build()
     }
 
     private fun sampleResponse(): SubmissionResponseDto = SubmissionResponseDto(
@@ -48,13 +64,13 @@ class SubmissionControllerTest {
     )
 
     @Test
-    fun `POST /api/submissions returns 201 with tracking code`() {
+    fun `submissions POST returns 201 with tracking code`() {
         val request = SubmissionRequestDto(
             formKey = "info-request",
             formData = """{"requesterName":"Anna Nováková"}""",
             contactEmail = "anna@example.cz",
         )
-        `when`(submissionService.create(org.mockito.ArgumentMatchers.any(SubmissionRequestDto::class.java), eq("127.0.0.1")))
+        whenever(submissionService.create(any(), eq("127.0.0.1")))
             .thenReturn(sampleResponse())
 
         mockMvc.perform(
@@ -69,8 +85,8 @@ class SubmissionControllerTest {
     }
 
     @Test
-    fun `POST /api/submissions returns 422 for validation failure`() {
-        `when`(submissionService.create(ArgumentMatchers.any(SubmissionRequestDto::class.java), ArgumentMatchers.anyString()))
+    fun `submissions POST returns 422 for validation failure`() {
+        whenever(submissionService.create(any(), any()))
             .thenThrow(ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "requesterName: Nesplňuje požadavky"))
 
         val request = SubmissionRequestDto(
@@ -86,8 +102,8 @@ class SubmissionControllerTest {
     }
 
     @Test
-    fun `GET /api/submissions/{code} returns submission`() {
-        `when`(submissionService.findByTrackingCode("0000018b66a2-6f4e-4f3b-9b2e-000000000000"))
+    fun `submissions by code returns submission`() {
+        whenever(submissionService.findByTrackingCode("0000018b66a2-6f4e-4f3b-9b2e-000000000000"))
             .thenReturn(sampleResponse())
 
         mockMvc.perform(get("/api/submissions/0000018b66a2-6f4e-4f3b-9b2e-000000000000"))
@@ -97,8 +113,8 @@ class SubmissionControllerTest {
     }
 
     @Test
-    fun `GET /api/submissions/{code} returns 404 for unknown code`() {
-        `when`(submissionService.findByTrackingCode("nope"))
+    fun `submissions by code returns 404 for unknown code`() {
+        whenever(submissionService.findByTrackingCode("nope"))
             .thenThrow(ResponseStatusException(HttpStatus.NOT_FOUND, "Podání nenalezeno."))
 
         mockMvc.perform(get("/api/submissions/nope"))
@@ -106,15 +122,20 @@ class SubmissionControllerTest {
     }
 
     @Test
-    fun `GET /api/submissions supports filtering and pagination`() {
-        // compile-time sanity: service.search signature exists
-        val page = Mockito.mock(org.springframework.data.domain.Page::class.java)
-        `when`(submissionService.search(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(),
-            org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(),
-            org.mockito.ArgumentMatchers.anyInt(), org.mockito.ArgumentMatchers.anyInt()))
-            .thenReturn(page)
+    fun `submissions supports filtering and pagination`() {
+        whenever(
+            submissionService.search(
+                status = SubmissionStatus.SUBMITTED,
+                formKey = null,
+                from = null,
+                to = null,
+                page = 0,
+                size = 20,
+            )
+        ).thenReturn(PageImpl(listOf(sampleResponse())))
 
         mockMvc.perform(get("/api/submissions").param("status", "SUBMITTED").param("page", "0").param("size", "20"))
             .andExpect(status().isOk)
+            .andExpect(jsonPath("$.content[0].trackingCode").value(sampleResponse().trackingCode))
     }
 }

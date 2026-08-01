@@ -5,9 +5,9 @@ import cz.obec.portal.submission.domain.FormDefinition
 import cz.obec.portal.submission.service.FormValidationService
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 
 class FormValidationServiceTest {
 
@@ -62,7 +62,7 @@ class FormValidationServiceTest {
             "deliveryMethod" to delivery,
             "dateNeeded" to dateNeeded,
             "agreeTerms" to agree,
-        )
+        ).filterValues { it != null }
         return objectMapper.writeValueAsString(map)
     }
 

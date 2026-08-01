@@ -34,10 +34,11 @@ class OpenApiConfig {
                     .description("OIDC token from Keycloak (Phase 2+)"))
             )
             .addSecurityItem(SecurityRequirement().addList("bearerAuth"))
-            .tags(
+            .tags(listOf(
                 io.swagger.v3.oas.models.tags.Tag().name("health").description("Health check endpoints"),
                 io.swagger.v3.oas.models.tags.Tag().name("submissions").description("Guest submissions and forms"),
+                io.swagger.v3.oas.models.tags.Tag().name("ruian").description("RÚIAN address autocomplete and Czech POINT locator"),
                 io.swagger.v3.oas.models.tags.Tag().name("admin").description("Admin web endpoints")
-            )
+            ))
     }
 }

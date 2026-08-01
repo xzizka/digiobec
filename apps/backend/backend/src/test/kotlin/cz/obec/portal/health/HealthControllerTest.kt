@@ -1,8 +1,5 @@
 package cz.obec.portal.health
 
-import io.kotest.assertions.matchers.shouldBe
-import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.should
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -34,7 +31,7 @@ class HealthControllerTest {
     private lateinit var buildProperties: BuildProperties
 
     @Test
-    fun `GET /api/health returns UP when all dependencies are healthy`() {
+    fun `health returns UP when all dependencies are healthy`() {
         `when`(buildProperties.version).thenReturn("1.0.0-SNAPSHOT")
         `when`(databaseHealthIndicator.health()).thenReturn(Health.up().build())
         `when`(keycloakHealthIndicator.health()).thenReturn(Health.up().build())
@@ -48,7 +45,7 @@ class HealthControllerTest {
     }
 
     @Test
-    fun `GET /api/health returns DOWN when database is down`() {
+    fun `health returns DOWN when database is down`() {
         `when`(buildProperties.version).thenReturn("1.0.0-SNAPSHOT")
         `when`(databaseHealthIndicator.health()).thenReturn(Health.down().build())
         `when`(keycloakHealthIndicator.health()).thenReturn(Health.up().build())
@@ -61,7 +58,7 @@ class HealthControllerTest {
     }
 
     @Test
-    fun `GET /api/health returns DOWN when keycloak is down`() {
+    fun `health returns DOWN when keycloak is down`() {
         `when`(buildProperties.version).thenReturn("1.0.0-SNAPSHOT")
         `when`(databaseHealthIndicator.health()).thenReturn(Health.up().build())
         `when`(keycloakHealthIndicator.health()).thenReturn(Health.down().build())

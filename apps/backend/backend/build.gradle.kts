@@ -3,11 +3,16 @@ plugins {
     id("io.spring.dependency-management")
     id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.kotlin.plugin.spring")
-    id("org.liquibase.gradle")
 }
 
 group = "cz.obec.portal"
 version = "1.0.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+    maven { url = uri("https://repo.spring.io/milestone") }
+    maven { url = uri("https://repo.spring.io/snapshot") }
+}
 
 java {
     toolchain {
@@ -21,6 +26,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // WebClient (RÚIAN, Czech POINT, OSRM) without a reactive web server
+    implementation("org.springframework:spring-webflux")
+    implementation("io.projectreactor:reactor-core")
+
+    // In-process cache for RÚIAN autocomplete (10 min TTL)
+    implementation("com.github.ben-manes.caffeine:caffeine")
 
     // Database
     runtimeOnly("org.postgresql:postgresql")
@@ -37,7 +49,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.19.8")
     testImplementation("org.testcontainers:postgresql:1.19.8")
-    testImplementation("org.mockito:mockito-kotlin:5.11.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.3.1")
     testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
     testImplementation("io.kotest:kotest-property:5.9.1")
@@ -49,8 +61,4 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-tasks.withType<org.liquibase.gradle.LiquibaseTask> {
-    liquibaseProperties = project.file("src/main/resources/liquibase.properties")
 }

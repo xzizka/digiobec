@@ -27,6 +27,9 @@ dependencies:
   flutter_secure_storage: ^9.2.0
   # UI
   material_design_icons_flutter: ^7.0.7291
+  # Map (Czech POINT locator)
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
   # JSON serialization
   freezed_annotation: ^2.4.0
   json_annotation: ^4.9.0

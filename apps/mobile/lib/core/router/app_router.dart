@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import '../../features/address/presentation/address_selector_page.dart';
 import '../../features/guest_submission/presentation/pages/home_page.dart';
 import '../../features/submission/presentation/submission_form_page.dart';
 
@@ -18,6 +19,11 @@ final appRouter = GoRouter(
         final formId = state.pathParameters['formId']!;
         return SubmissionFormPage(formKey: formId);
       },
+    ),
+    GoRoute(
+      path: '/address',
+      name: 'address',
+      builder: (context, state) => const AddressSelectorPage(),
     ),
     GoRoute(
       path: '/confirmation/:referenceNumber',

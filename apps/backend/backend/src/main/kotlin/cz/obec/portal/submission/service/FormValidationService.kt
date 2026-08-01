@@ -53,7 +53,8 @@ class FormValidationService(
 
         val schemaViolations = schema.validate(json)
         for (v in schemaViolations) {
-            val field = v.path.joinToString(".") { it }.ifEmpty { "$" }
+            val loc = v.instanceLocation
+            val field = (0 until loc.nameCount).joinToString(".") { loc.getName(it) }.ifEmpty { "$" }
             errors.add(FieldError(field, v.message))
         }
 
@@ -116,7 +117,7 @@ class FormValidationService(
         if (raw.length == 10) {
             val base = raw.take(9).toLong()
             val check = raw.takeLast(1).toInt()
-            val expected = base % 11
+            val expected = (base % 11).toInt()
             val valid = if (expected == 10) check == 0 else check == expected
             if (!valid) errors.add(FieldError("birthNumber", "Rodné číslo není platné."))
         }

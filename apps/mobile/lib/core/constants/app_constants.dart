@@ -16,7 +16,7 @@ class AppConstants {
   static const String submissionsEndpoint = '/api/submissions';
 
   // RÚIAN autocomplete
-  static const String ruaianAutocompleteEndpoint = '/api/addresses/autocomplete';
+  static const String ruaianAutocompleteEndpoint = '/api/addresses/suggest';
 
   // Czech POINT locator
   static const String czechPointLocatorEndpoint = '/api/czech-points/nearby';

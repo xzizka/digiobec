@@ -53,3 +53,19 @@ logging:
     org.springframework.web: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# External registries — mock values keep the demo working without keys;
+# point at real endpoints via env vars in production.
+ruian:
+  api-url: ${RUIAN_API_URL:https://api.ruian.cz}
+  api-key: ${RUIAN_API_KEY:mock-key}
+
+czech-point:
+  api-url: ${CZECH_POINT_API_URL:https://czechpoint.gov.cz/api}
+  api-key: ${CZECH_POINT_API_KEY:mock-key}
+
+isvs:
+  api-url: ${ISVS_API_URL:}
+
+osrm:
+  api-url: ${OSRM_API_URL:https://router.project-osrm.org}

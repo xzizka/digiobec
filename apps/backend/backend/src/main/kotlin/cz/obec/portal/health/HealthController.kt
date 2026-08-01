@@ -36,8 +36,8 @@ class HealthController(
             status = overallStatus,
             version = buildProperties.version,
             timestamp = Instant.now().toString(),
-            database = dbHealth.status.name(),
-            keycloak = kcHealth.status.name()
+            database = dbHealth.status.code,
+            keycloak = kcHealth.status.code
         ))
     }
 }
