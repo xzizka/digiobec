@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  // Required by keycloak-js's `silentCheckSsoRedirectUri` option: loaded in a
+  // hidden iframe on init so an existing Keycloak SSO session can be detected
+  // without a full-page redirect. Must be same-origin and do nothing but
+  // hand the callback URL back to the parent window.
+  parent.postMessage(location.href, location.origin);
+</script>
+</body>
+</html>

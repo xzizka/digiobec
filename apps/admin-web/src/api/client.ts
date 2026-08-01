@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getAuthToken } from '../features/auth/authToken'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8081',
@@ -11,6 +12,10 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
+    const token = getAuthToken()
+    if (token) {
+      config.headers.set('Authorization', `Bearer ${token}`)
+    }
     console.log('[API] Request:', config.method?.toUpperCase(), config.url)
     return config
   },

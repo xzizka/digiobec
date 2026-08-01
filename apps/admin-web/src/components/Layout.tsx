@@ -2,12 +2,14 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import { LayoutDashboard, FileText, Settings, LogOut, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../features/auth/AuthProvider'
 
 export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { t, i18n, ready } = useTranslation('common')
   const { t: tNav } = useTranslation('navigation')
   const location = useLocation()
+  const { username, logout } = useAuth()
 
   const navigation = [
     { name: tNav('dashboard'), href: '/', icon: LayoutDashboard },
@@ -123,11 +125,12 @@ export function Layout() {
 
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-full text-sm text-text-secondary">
-              <span>{t('common.clerk')}</span>
+              <span>{username ?? t('common.clerk')}</span>
             </div>
             <button
               className="p-2 rounded-md text-text-secondary hover:bg-surface-hover hover:text-primary"
               aria-label={tNav('logout')}
+              onClick={logout}
             >
               <LogOut size={20} />
             </button>
