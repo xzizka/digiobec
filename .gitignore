@@ -1,0 +1,61 @@
+# Build artifacts
+**/build/
+**/dist/
+**/target/
+**/out/
+
+# Gradle
+**/.gradle/
+**/gradlew
+**/gradlew.bat
+**/gradle/wrapper/gradle-wrapper.jar
+
+# Flutter/Dart
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/pubspec.lock
+**/build/
+**/ios/Pods/
+**/ios/.symlinks/
+
+# Node.js
+**/node_modules/
+**/package-lock.json
+**/pnpm-lock.yaml
+**/yarn.lock
+
+# IDE
+**/.idea/
+**/.vscode/
+**/*.iml
+**/*.swp
+**/*.swo
+**/.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+**/coverage/
+**/.nyc_output/
+
+# Misc
+*.orig
+*.bak
+*.tmp
+*.temp
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
