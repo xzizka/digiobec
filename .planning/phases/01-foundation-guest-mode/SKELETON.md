@@ -400,7 +400,7 @@ cd mobile && flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:8
 - [ ] `curl localhost:8081/actuator/health` → UP + db + keycloak
 - [ ] `open http://localhost:3000` → Admin web loads, health green
 - [ ] `flutter run -d chrome` → Mobile web shows health check
-- [ ] Guest submits "Výpis z rejstříku" → gets tracking code → PDF downloads
+- [ ] Guest submits "Žádost o informace" → gets tracking code → PDF downloads
 - [ ] RÚIAN autocomplete works for "Václavské nám" → selects → form fills
 - [ ] Czech POINT locator shows 5 nearest points on map + list
 - [ ] Admin clerk logs in → sees submission → changes state → CSV exports

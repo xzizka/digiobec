@@ -1,5 +1,11 @@
 # REQUIREMENTS: Municipal Citizen Portal (Občanský portál obce)
 
+> **Scope:** Portál je určen pro **obec do 1 500 obyvatel (obec I. typu) bez rozšířené působnosti (ORP)**.
+> Pokrývá samostatnou působnost obce + základní rozsah přenesené působnosti.
+> Agendy ORP (občanské průkazy/pasy, řidičské průkazy, registr vozidel, živnostenská agenda,
+> OSPOD, vodoprávní řízení, stavební povolení, lesy/myslivost/rybářství, silniční/dopravní úřady)
+> jsou **mimo rozsah** — uživatel je řeší přes portál občana (federace) nebo Czech POINT.
+
 ## Functional Requirements
 
 ### FR-01: Guest Submission (Bez přihlášení)
@@ -16,7 +22,7 @@
 - **FR-02.5** Správa profilů: fyzická osoba, podnikatel (IČO), zástupce
 
 ### FR-03: Agenda a Úkony (ISVS integrace)
-- **FR-03.1** Katalog úkonů z ISVS (předvyplnění z rejstříků)
+- **FR-03.1** Katalog úkonů z ISVS **omezený na kompetence obce I. typu** (samostatná působnost + základní rozsah přenesené působnosti; agendy ORP vynechány) – předvyplnění z rejstříků
 - **FR-03.2** Dynamické formuláře (JSON Schema + UI Schema)
 - **FR-03.3** Přílohy: foto, PDF, sken (max 25 MB, antivir scan)
 - **FR-03.4** Podpis: eIdentita (kvalifikovaný) / rukopisný na obrazovce

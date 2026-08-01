@@ -9,6 +9,7 @@ Občané potřebují jednoduchý způsob, jak řešit úřední záležitosti be
 ## Target Users
 - **Primární:** Občané obce (všechny věkové kategorie, přístupnost WCAG 2.1 AA)
 - **Sekundární:** Úředníci (webový portál pro správu žádostí, komunikaci)
+- **Cílová obec:** do 1 500 obyvatel, **obec I. typu bez rozšířené působnosti (ORP)** – aplikace pokrývá jen samostatnou působnost + základní přenesenou působnost
 
 ## Scope (MVP)
 - **Komunikace:** Zprávy, oznámení, formuláře, přílohy

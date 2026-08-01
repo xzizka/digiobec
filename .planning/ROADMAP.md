@@ -7,8 +7,12 @@
 | 1 | Foundation & Guest Mode | IA, Design System, Guest submission, RÚIAN, Czech POINT | 6 sprints | Guest pode submit žádost, stažení potvrzení |
 | 2 | Auth & Payments | eIdentita (5 metod), Keycloak, QR/GP WebPay, doručky | 6 sprints | Přihlášený uživatel, platby, chytrá složenka |
 | 3 | Case Mgmt & Notifications | Timeline, chat, SLA, multi-channel notif, GDPR dashboard | 5 sprints | Plný životní cyklus řízení |
-| 4 | Municipal Services Pack | Psi, odpad, voda OCR, povolení, události, rodinné profily | 6 sprints | Diferencující služby pro konkrétní agendu |
+| 4 | Municipal Services Pack | Psi, odpad, voda OCR, trhy/zábory, události, rodinné profily | 6 sprints | Diferencující služby pro konkrétní agendu |
 | 5 | Federation & Admin | Citizen Portal API, Clerk dashboard, analytics, multi-tenant | 5 sprints | Provozovatelné pro více obcí |
+
+> **Scope constraint:** Portál je určen pro **obec do 1 500 obyvatel (obec I. typu) bez rozšířené působnosti**.
+> Aplikace pokrývá výhradně **samostatnou působnost obce** (místní poplatky, svoz odpadu, trhy/zábory, události, obecní rozpočet, hlášení závad) a **základní rozsah přenesené působnosti** (Czech POINT odkaz, matrika tam, kde ji obec vede).
+> **Mimo rozsah — agendy ORP (obce III. typu):** občanské průkazy a cestovní pasy, řidičské průkazy, evidence motorových vozidel a bodů, živnostenskoprávní agenda a živnostenský rejstřík, evidence zemědělských podnikatelů, sociálně-právní ochrana dětí, vodoprávní řízení, stavební povolení (stavební úřad), státní správa lesů/myslivosti/rybářství, silniční a dopravní správní úřad, koordinace sociálních služeb. Tyto úkony uživatel řeší přes **portál občana (federace, E5.1)** nebo na **Czech POINTu**.
 
 ---
 
@@ -25,12 +29,13 @@
 - **E1.3** Guest Submission: formulář builder (JSON Schema), RÚIAN autocomplete, Czech POINT locator, PDF potvrzení
 - **E1.4** Backend Core: domain model (citizen, submission, attachment), REST API, OpenAPI spec, Testcontainers
 - **E1.5** Admin Web MVP: seznam podání, detail, změna stavu, export CSV
+- **E1.6** Citizen Web MVP: webová verze portálu pro občany (React), guest submission, sledování stavu, stažení potvrzení
 
 ### Acceptance Criteria
-- [ ] Guest uživatel podá žádost "Výpis z rejstříku" v < 3 min
+- [ ] Guest uživatel podá žádost "Žádost o informace" v < 3 min (mobile i citizen-web)
 - [ ] Autocomplete adresy funguje pro 95 % adres RÚIAN
 - [ ] PDF potvrzení obsahuje sledovací kód, QR pro ověření
-- [ ] Lighthouse accessibility score ≥ 95 (mobile/web)
+- [ ] Lighthouse accessibility score ≥ 95 (mobile/web i citizen-web)
 - [ ] CI/CD: build, test, deploy do staging za < 15 min
 
 ---
@@ -89,9 +94,9 @@
 
 ### Epics
 - **E4.1** Psi: registrace, poplatky,-chip, expirace, upomínky
-- **E4.2** Odpad: kalendář vývozu,报名 velkoobjemový, kompostéry
-- **E4.3** Voda/kanalizace: OCR údajů z měřiče (ML Kit / ML Kit Text Recognition), spotřeba, fakturace
-- **E4.4** Povolení: stavba, výjezd, trhy – formuláře z ISVS, přiložené plány
+- **E4.2** Odpad: kalendář vývozu, velkoobjemový, kompostéry
+- **E4.3** Voda/kanalizace: OCR údajů z měřiče (ML Kit), spotřeba, fakturace
+- **E4.4** Místní povolení: trhy a zábory veřejného prostranství – formuláře z ISVS
 - **E4.5** Události a deska: místní akce, volby, výluky – kalendář, mapy
 - **E4.6** Rodinné profily: sdílení přístupu k dětem/seniorům, delegace
 

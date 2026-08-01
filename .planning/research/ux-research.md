@@ -43,11 +43,11 @@ Key findings:
 
 ## 2. Core User Journeys
 
-### Journey 1: "Chci podat žádost o výpis z rejstříku" (Registry Extract)
+### Journey 1: "Chci podat žádost o informace" (Request Information / InfZ)
 
 | Step | Current State (National Portal) | Municipal Portal Opportunity |
 |------|--------------------------------|------------------------------|
-| 1. Discover | Search "výpis z rejstříku" on gov.cz | Municipal homepage → "Nejčastější žádosti" tile |
+| 1. Discover | Search "žádost o informace" on gov.cz | Municipal homepage → "Nejčastější žádosti" tile |
 | 2. Auth | **eIdentita required** (bank ID / mobile key / NIA ID / MojeID / databox) | **Guest mode**: pre-fill form with RÚIAN address autocomplete → offer eIdentita at submit |
 | 3. Form | Prefilled from registers (ROB, RÚIAN) | Same + municipal-specific registers (dog registry, waste registry) |
 | 4. Pay | Card / bank transfer / QR code (Czech POINT) | **QR platba** on screen + email + databox; save payment method |
@@ -143,7 +143,7 @@ Key findings:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Žádost #2025-045-123  •  Výpis z rejstříku živnostníků     │
+│  Žádost #2025-045-123  •  Žádost o informace (InfZ)           │
 ├─────────────────────────────────────────────────────────────┤
 │  ● 25.7. 10:15  Podána (Guest mode)                          │
 │  ● 25.7. 10:17  Platba uhrazena (QR kód, 200 Kč)             │
@@ -280,21 +280,21 @@ Key findings:
 │  ══════════════════════════════════════════════════════════════════  │
 │  NEJČASTĚJŠÍ SLUŽBY (6 tiles, 2 rows × 3)                          │
 │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐                │
-│  │ 📄 Výpis z   │ │ 💰 Poplatky  │ │ 🐕 Pes /     │                │
-│  │    rejstříku │ │    a platby  │ │    odpad     │                │
+│  │ 📄 Žádost o  │ │ 💰 Poplatky  │ │ 🐕 Pes /     │                │
+│  │    informace │ │    a platby  │ │    odpad     │                │
 │  │ [Podat]      │ │ [Přehled]    │ │ [Spravovat]  │                │
 │  └──────────────┘ └──────────────┘ └──────────────┘                │
 │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐                │
-│  │ 🏗 Stavba &  │ │ 📅 Události  │ │ 📨 Datová    │                │
-│  │    bydlení   │ │    a novinky │ │    schránka  │                │
+│  │ 🏘 Trhy &    │ │ 📅 Události  │ │ 📨 Datová    │                │
+│  │    zábory    │ │    a novinky │ │    schránka  │                │
 │  │ [Podat]      │ │ [Kalendář]   │ │ [Připojit]   │                │
 │  └──────────────┘ └──────────────┘ └──────────────┘                │
 ├────────────────────────────────────────────────────────────────────┤
 │  MANÁŽER MÉCH PŘÍPADŮ (logged in)                                  │
 │  ┌──────────────────────────────────────────────────────────────┐  │
-│  │ #2025-045 Výpis z rejstříku    ● Čeká na platbu      [Detaily]│  │
+│  │ #2025-045 Žádost o informace ● Čeká na platbu      [Detaily]│  │
 │  │ #2025-043 Poplatek za psa      ✅ Uhrazeno 15.7.     [PDF]    │  │
-│  │ #2025-041 Stavba garáže        ○ Ve řízení (den 12/30) [Chat] │  │
+│  │ #2025-041 Zábory prostranství  ○ Ve řízení (den 12/30) [Chat] │  │
 │  └──────────────────────────────────────────────────────────────┘  │
 ├────────────────────────────────────────────────────────────────────┤
 │  FOOTER: Kontakt | Otevřená data | Přístupnost | GDPR | Cookies   │
@@ -305,7 +305,7 @@ Key findings:
 
 ```
 ┌─────────────────────────────┐
-│ ◀ Zpět    Výpis z rejstříku  │
+│ ◀ Zpět    Žádost o informace │
 ├─────────────────────────────┤
 │                             │
 │  ✅ Adresa předvyplněna     │
@@ -370,7 +370,7 @@ Key findings:
 
 ```
 ┌────────────────────────────────────────┐
-│ ◀ Zpět    #2025-045 Výpis z rejstříku  │
+│ ◀ Zpět    #2025-045 Žádost o informace │
 ├────────────────────────────────────────┤
 │  STAV: ⏳ Čeká na vaši identifikaci     │
 │  SLA: Zbývá 1 den 14 hodin             │
