@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Potvrzení o podání — {{formTitle}}</title>
+  <style>{{css}}</style>
+</head>
+<body>
+  <main class="confirmation" id="confirmation">
+    <header class="confirmation-header">
+      <p class="municipality">Obec Broumy · oficiální portál</p>
+      <h1>Potvrzení o podání</h1>
+      <p class="form-title">{{formTitle}}</p>
+    </header>
+
+    <dl class="confirmation-meta">
+      <dt>Sledovací kód</dt>
+      <dd class="tracking-code">{{trackingCode}}</dd>
+      <dt>Datum a čas podání</dt>
+      <dd>{{submittedAt}}</dd>
+    </dl>
+
+    <table class="data-table">
+      <caption>Údaje z podání</caption>
+      <tbody>
+        {{fieldRows}}
+      </tbody>
+    </table>
+
+    <div class="confirmation-qr">
+      <img src="data:image/png;base64,{{qrBase64}}" alt="QR kód pro ověření potvrzení">
+      <p>Naskenováním QR kódu ověříte pravost potvrzení na webu obce.</p>
+    </div>
+
+    <footer class="confirmation-footer">
+      <p>Ověření pravosti: <a href="{{verificationUrl}}">{{verificationUrl}}</a></p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -6,6 +6,7 @@ import '../../../../components/broumy_progress_indicator.dart';
 import '../../../../theme/broumy_tokens.dart';
 import '../data/submission_repository.dart';
 import '../domain/submission.dart';
+import 'confirmation_page.dart';
 import 'submission_form_controller.dart';
 import 'widgets/dynamic_form_field.dart';
 import 'widgets/submission_progress_indicator.dart';
@@ -237,7 +238,21 @@ class _SuccessView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             BroumyButton(
+              child: const Text('Zobrazit potvrzení'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => ConfirmationPage(
+                      trackingCode: result.trackingCode,
+                    ),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 8),
+            BroumyButton(
               child: const Text('Zpět na úvod'),
+              variant: BroumyButtonVariant.secondary,
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],

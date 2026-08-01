@@ -1,0 +1,119 @@
+/* Confirmation page — mirrors the PDF styling (Plan 05). */
+:root {
+  --broumy-primary: #22599a;
+  --broumy-accent: #e1a03c;
+  --broumy-text: #1c1c1c;
+  --broumy-text-secondary: #5a5a5a;
+  --broumy-border: #c9c4ba;
+  --broumy-surface: #ffffff;
+  --broumy-background: #f5f5f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Fira Sans", "DejaVu Sans", Arial, sans-serif;
+  color: var(--broumy-text);
+  background: var(--broumy-background);
+  line-height: 1.5;
+}
+
+.confirmation {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--broumy-surface);
+  border: 1px solid var(--broumy-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+}
+
+.confirmation-header {
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--broumy-primary);
+}
+
+.confirmation-header .municipality {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--broumy-primary);
+  font-weight: 600;
+}
+
+.confirmation-header h1 {
+  margin: 0.25rem 0 0;
+  font-size: 1.6rem;
+}
+
+.confirmation-header .form-title {
+  margin: 0.25rem 0 0;
+  color: var(--broumy-text-secondary);
+}
+
+.confirmation-meta {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #eef2f8;
+  border-left: 4px solid var(--broumy-primary);
+  border-radius: 4px;
+}
+
+.confirmation-meta dt { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--broumy-text-secondary); }
+.confirmation-meta dd { margin: 0 0 0.5rem; font-size: 1.05rem; }
+.confirmation-meta .tracking-code { font-family: "DejaVu Sans Mono", monospace; font-size: 1.2rem; letter-spacing: 0.5px; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.data-table caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid var(--broumy-border);
+  vertical-align: top;
+}
+
+.data-table th {
+  width: 40%;
+  font-weight: 600;
+  color: var(--broumy-text-secondary);
+}
+
+.confirmation-qr {
+  text-align: center;
+  margin: 1.5rem 0 0;
+}
+
+.confirmation-qr img {
+  width: 220px;
+  height: 220px;
+}
+
+.confirmation-qr p {
+  font-size: 0.85rem;
+  color: var(--broumy-text-secondary);
+}
+
+.confirmation-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--broumy-border);
+  font-size: 0.8rem;
+  color: var(--broumy-text-secondary);
+}
+
+@media print {
+  body { background: #fff; }
+  .confirmation { box-shadow: none; border: none; margin: 0; max-width: none; }
+  .confirmation-footer { page-break-before: avoid; }
+}

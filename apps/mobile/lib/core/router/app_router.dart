@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import '../../features/address/presentation/address_selector_page.dart';
 import '../../features/guest_submission/presentation/pages/home_page.dart';
+import '../../features/submission/presentation/confirmation_page.dart';
 import '../../features/submission/presentation/submission_form_page.dart';
 
 final appRouter = GoRouter(
@@ -30,10 +31,7 @@ final appRouter = GoRouter(
       name: 'confirmation',
       builder: (context, state) {
         final referenceNumber = state.pathParameters['referenceNumber']!;
-        return Placeholder(
-          key: Key('confirmation-$referenceNumber'),
-          child: Center(child: Text('Confirmation: $referenceNumber')),
-        );
+        return ConfirmationPage(trackingCode: referenceNumber);
       },
     ),
   ],

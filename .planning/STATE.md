@@ -40,16 +40,16 @@
 | 01-02: Design System Foundation | 1 | ✅ **DONE** | [01-02-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-02-SUMMARY.md) |
 | 01-03: Guest Submission Core | 2 | ✅ **DONE** | [01-03-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-03-SUMMARY.md) |
 | 01-04: RÚIAN + Czech POINT | 2 | ✅ **DONE** | [01-04-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-04-SUMMARY.md) |
-| 01-05: PDF Confirmation | 3 | ⏳ PENDING | — |
+| 01-05: PDF Confirmation | 3 | ✅ **DONE** | [01-05-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-05-SUMMARY.md) |
 | 01-06: Admin Web MVP | 3 | ⏳ PENDING | — |
 | 01-07: Citizen Web MVP | 4 | ⏳ PENDING | — |
 
 ### Next Actions
-1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 3`** — Plan 05 (PDF Confirmation) + Plan 06 (Admin Web MVP)
-2. Then Wave 4: Plan 07 (Citizen Web MVP)
+1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 3`** — remaining Plan 06 (Admin Web MVP); then Wave 4: Plan 07 (Citizen Web MVP)
 3. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
 4. **Follow-ups (Plan 02):** `flutter test --coverage > 80%` gating; Storybook (React) / Widgetbook (Flutter) docs; `flutter drive` axe-core web a11y v CI
 5. **Follow-ups (Plan 04):** Drift offline cache (last 50 searches); nightly PostgreSQL RÚIAN import; Keycloak (Plan 06) + cert pinning pro RÚIAN/Czech POINT; Český POINT API provisioning (Ministry)
+6. **Follow-ups (Plan 05):** Rate limit + audit log na PDF/confirmation endpointech (přejde s auth/Plan 06); digitální podpis PDF (fáze 2, T-05-01); PDF/UA tagged a11y + verapdf do CI; generování PDF přes `CompletableFuture` + cache 1h (T-05-05)
 
 ### Open Questions
 - [ ] Citizen Portal federation API spec (DIA/NAKIT) – need contact
@@ -75,6 +75,8 @@
 │   ├── 01-01-SUMMARY.md ✅
 │   ├── 01-02-SUMMARY.md ✅
 │   ├── 01-03-SUMMARY.md ✅
+│   ├── 01-04-SUMMARY.md ✅
+│   ├── 01-05-SUMMARY.md ✅
 │   └── SKELETON.md
 └── STATE.md            # This file
 ```
@@ -91,3 +93,4 @@
 - `f25fa03` — **Plan 02 complete: Broumy design system — Flutter + React components, palette, a11y CI**
 - `2ac4515` — **Plan 03 complete: Guest submission core — forms catalog, validation, tracking**
 - *(next)* — **Plan 04: RÚIAN + Czech POINT — autocomplete, locator map/list (mobile + admin-web)**
+- *(next)* — **Plan 05: PDF/A-1b confirmation with QR — mobile preview + admin preview/download**

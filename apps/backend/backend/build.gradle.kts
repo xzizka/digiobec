@@ -57,6 +57,11 @@ dependencies {
     // JSON
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("com.networknt:json-schema-validator:1.4.0")
+
+    // PDF confirmation (XSL-FO → PDF/A-1b) + QR codes
+    implementation("org.apache.xmlgraphics:fop:2.9")
+    implementation("com.google.zxing:core:3.5.3")
+    implementation("com.google.zxing:javase:3.5.3")
 }
 
 tasks.withType<Test> {

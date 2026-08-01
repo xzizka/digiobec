@@ -56,6 +56,9 @@ logging:
 
 # External registries — mock values keep the demo working without keys;
 # point at real endpoints via env vars in production.
+portal:
+  base-url: ${PORTAL_BASE_URL:https://obec.cz}
+
 ruian:
   api-url: ${RUIAN_API_URL:https://api.ruian.cz}
   api-key: ${RUIAN_API_KEY:mock-key}

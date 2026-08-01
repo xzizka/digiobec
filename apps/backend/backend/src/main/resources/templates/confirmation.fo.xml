@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  XSL-FO template for the PDF confirmation (Plan 05).
+  Rendered by Apache FOP with the PDF/A-1b profile. Placeholders:
+    {{trackingCode}} {{formTitle}} {{submittedAt}} {{verificationUrl}}
+    {{qrBase64}}      {{fieldRows}} (pre-rendered <fo:table-row> elements)
+-->
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"
+         xmlns:xmp="adobe:ns:meta/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         font-family="DejaVu Sans"
+         font-size="10pt"
+         line-height="1.35">
+  <xmp:xmpmeta>
+    <rdf:RDF>
+      <rdf:Description rdf:about="">
+        <dc:title>Sledovací kód: {{trackingCode}}</dc:title>
+        <dc:subject>{{formTitle}}</dc:subject>
+      </rdf:Description>
+    </rdf:RDF>
+  </xmp:xmpmeta>
+  <fo:layout-master-set>
+    <fo:simple-page-master master-name="a4"
+                           page-height="29.7cm"
+                           page-width="21cm">
+      <fo:region-body margin="2cm" margin-top="2.5cm" margin-bottom="2.5cm"/>
+      <fo:region-before extent="2cm"/>
+      <fo:region-after extent="2cm"/>
+    </fo:simple-page-master>
+  </fo:layout-master-set>
+
+  <fo:page-sequence master-reference="a4" initial-page-number="1">
+    <!-- Page header: municipality identity -->
+    <fo:static-content flow-name="xsl-region-before">
+      <fo:block border-bottom="2pt solid #22599a"
+                padding-bottom="4pt"
+                font-size="13pt"
+                font-weight="bold"
+                color="#22599a">
+        Obec Broumy · oficiální portál
+      </fo:block>
+    </fo:static-content>
+
+    <!-- Page footer: verification URL -->
+    <fo:static-content flow-name="xsl-region-after">
+      <fo:block text-align="center" font-size="7.5pt" color="#5a5a5a">
+        Potvrzení o podání · Ověření pravosti: {{verificationUrl}}
+      </fo:block>
+    </fo:static-content>
+
+    <fo:flow flow-name="xsl-region-body">
+      <fo:block font-size="18pt" font-weight="bold" color="#1c1c1c">
+        Potvrzení o podání
+      </fo:block>
+
+      <fo:block margin-top="4pt" font-size="11pt" color="#5a5a5a">
+        {{formTitle}}
+      </fo:block>
+
+      <fo:table margin-top="14pt" table-layout="fixed" width="100%">
+        <fo:table-body>
+          <fo:table-row>
+            <fo:table-cell width="40%">
+              <fo:block font-weight="bold">Sledovací kód</fo:block>
+            </fo:table-cell>
+            <fo:table-cell width="60%">
+              <fo:block font-family="DejaVu Sans Mono" font-size="11pt">{{trackingCode}}</fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:table-cell width="40%">
+              <fo:block font-weight="bold">Datum a čas podání</fo:block>
+            </fo:table-cell>
+            <fo:table-cell width="60%">
+              <fo:block>{{submittedAt}}</fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </fo:table-body>
+      </fo:table>
+
+      <!-- Submitted form data (labels + values) -->
+      <fo:block margin-top="14pt" font-size="12pt" font-weight="bold">
+        Údaje z podání
+      </fo:block>
+      <fo:table margin-top="6pt" table-layout="fixed" width="100%">
+        <fo:table-column column-width="40%"/>
+        <fo:table-column column-width="60%"/>
+        <fo:table-body>
+          {{fieldRows}}
+        </fo:table-body>
+      </fo:table>
+
+      <!-- QR verification code -->
+      <fo:block margin-top="20pt" text-align="center">
+        <fo:external-graphic src="data:image/png;base64,{{qrBase64}}"
+                             content-width="4.2cm"
+                             content-height="4.2cm"/>
+      </fo:block>
+      <fo:block text-align="center" font-size="8pt" color="#5a5a5a">
+        Naskenováním QR kódu ověříte pravost potvrzení na webu obce.
+      </fo:block>
+    </fo:flow>
+  </fo:page-sequence>
+</fo:root>
