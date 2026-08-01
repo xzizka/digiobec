@@ -1,10 +1,10 @@
 ---
 schema_version: 1
-open_count: 2
+open_count: 3
 waived_count: 0
 fixed_count: 0
-total_count: 2
-last_updated: 2026-08-01T19:23:47.191Z
+total_count: 3
+last_updated: 2026-08-01T21:55:00.000Z
 ---
 
 # Broken Windows Ledger
@@ -17,6 +17,7 @@ last_updated: 2026-08-01T19:23:47.191Z
 |----|-------|------|------|------|-------------|--------|--------|-------------|-------------|
 | 1 | 01 | stub | apps/citizen-web/src/features/submission/components/AddressAutocomplete.tsx |  | RUIAN AddressAutocomplete built + unit-tested but not wired into a live form (no current form schema declares ui:widget: address) | open |  | 2026-08-01T19:23:47.019Z |  |
 | 2 | 01 | deviation | apps/mobile/lib/features/submission/domain/form_field.dart |  | FormDefinition.fromJson casts json['schema'] directly to a Map, but the backend returns schema/uiSchema as JSON-encoded strings - likely throws at runtime against a live backend; discovered during Plan 07 live verification, not fixed (mobile out of scope) | open |  | 2026-08-01T19:23:47.191Z |  |
+| 3 | 01 | deviation | apps/mobile/lib/features/submission/domain/submission.dart | 27 | Submission.fromJson casts json['formData'] directly to a Map, but the backend SubmissionResponseDto declares formData as String - same wire-contract mismatch as item 2, throws a Dart TypeError at runtime. Confirmed independently during phase 01 verification; invisible to mobile tests because FakeSubmissionDatasource returns the wrong (Map) shape | open |  | 2026-08-01T21:55:00.000Z |  |
 
 ````json
 [
@@ -42,6 +43,18 @@ last_updated: 2026-08-01T19:23:47.191Z
     "status": "open",
     "reason": "",
     "recorded_at": "2026-08-01T19:23:47.191Z",
+    "resolved_at": null
+  },
+  {
+    "id": 3,
+    "kind": "deviation",
+    "phase": "01",
+    "file": "apps/mobile/lib/features/submission/domain/submission.dart",
+    "line": 27,
+    "description": "Submission.fromJson casts json['formData'] directly to a Map, but the backend SubmissionResponseDto declares formData as String - same wire-contract mismatch as item 2, throws a Dart TypeError at runtime. Confirmed independently during phase 01 verification; invisible to mobile tests because FakeSubmissionDatasource returns the wrong (Map) shape",
+    "status": "open",
+    "reason": "",
+    "recorded_at": "2026-08-01T21:55:00.000Z",
     "resolved_at": null
   }
 ]
