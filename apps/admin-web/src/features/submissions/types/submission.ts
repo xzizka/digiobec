@@ -9,10 +9,14 @@ export interface Submission {
   submittedAt: string
 }
 
+// Matches backend cz.obec.portal.submission.domain.SubmissionStatus (Plan 06
+// renamed IN_PROGRESS/APPROVED -> PROCESSING/COMPLETED and added NEEDS_INFO
+// to match the clerk workflow: SUBMITTED -> PROCESSING -> COMPLETED/REJECTED/NEEDS_INFO).
 export type SubmissionStatus =
   | 'SUBMITTED'
-  | 'IN_PROGRESS'
-  | 'APPROVED'
+  | 'PROCESSING'
+  | 'NEEDS_INFO'
+  | 'COMPLETED'
   | 'REJECTED'
 
 export interface SubmissionPage<T> {
