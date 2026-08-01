@@ -21,6 +21,9 @@
 | Target: obec do 1 500 obyvatel (I. typu), bez rozšířené působnosti | Portál je pro malou obec; agendy ORP (občanky/pasy, řidičáky, registr vozidel, živnostenská agenda, OSPOD, stavební povolení aj.) mimo rozsah – přes portál občana / Czech POINT | 2026-08-01 |
 | Demo formulář: "Žádost o informace" (InfZ) | Univerzální úkon každé obce; nahradil "Výpis z rejstříku" (živnostenský = ORP agenda) | 2026-08-01 |
 | Design system: **Broumy** (ne gov.cz) | Paleta + názvy z živé broumy.cz; komponenty `broumy_*`/`Broumy*`, Fira Sans; gov.cz design byl jen výchozí bod | 2026-08-01 |
+| Keycloak realm import plně automatizovaný (`keycloak/realm-portal.json` + `--import-realm`) | Uživatel explicitně žádal žádné manuální kroky v Admin Console; `docker compose up` reprodukuje celý auth stack (realm, role `clerk`, oba OIDC klienty, seed test uživatel) | 2026-08-01 |
+| SubmissionStatus rozšířen: SUBMITTED→PROCESSING→COMPLETED/REJECTED/NEEDS_INFO | Nahradil Plan 03 IN_PROGRESS/APPROVED; odpovídá skutečnému clerk workflow (Plan 06) | 2026-08-01 |
+| MFA pro úředníky (T-06-01) odloženo | Vyžadovalo by interaktivní TOTP enrollment, což je v rozporu s plnou automatizací seed uživatele; sledováno jako follow-up | 2026-08-01 |
 
 ### Research Completed
 - [x] Czech eGov integrations (eIdentita, ISDS, ISVS, payments, accessibility law)
@@ -41,15 +44,16 @@
 | 01-03: Guest Submission Core | 2 | ✅ **DONE** | [01-03-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-03-SUMMARY.md) |
 | 01-04: RÚIAN + Czech POINT | 2 | ✅ **DONE** | [01-04-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-04-SUMMARY.md) |
 | 01-05: PDF Confirmation | 3 | ✅ **DONE** | [01-05-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-05-SUMMARY.md) |
-| 01-06: Admin Web MVP | 3 | ⏳ PENDING | — |
+| 01-06: Admin Web MVP | 3 | ✅ **DONE** | [01-06-SUMMARY.md](.planning/phases/01-foundation-guest-mode/01-06-SUMMARY.md) |
 | 01-07: Citizen Web MVP | 4 | ⏳ PENDING | — |
 
 ### Next Actions
-1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 3`** — remaining Plan 06 (Admin Web MVP); then Wave 4: Plan 07 (Citizen Web MVP)
+1. **Run `/gsd-execute-phase 01-foundation-guest-mode --wave 4`** — remaining Plan 07 (Citizen Web MVP)
 3. **Rozsah:** Agendy ORP vynechány z ROADMAP/REQUIREMENTS/plánů (epic E4.4 "Místní povolení: trhy a zábory" místo stavebních povolení; demo formulář "Žádost o informace")
 4. **Follow-ups (Plan 02):** `flutter test --coverage > 80%` gating; Storybook (React) / Widgetbook (Flutter) docs; `flutter drive` axe-core web a11y v CI
-5. **Follow-ups (Plan 04):** Drift offline cache (last 50 searches); nightly PostgreSQL RÚIAN import; Keycloak (Plan 06) + cert pinning pro RÚIAN/Czech POINT; Český POINT API provisioning (Ministry)
-6. **Follow-ups (Plan 05):** Rate limit + audit log na PDF/confirmation endpointech (přejde s auth/Plan 06); digitální podpis PDF (fáze 2, T-05-01); PDF/UA tagged a11y + verapdf do CI; generování PDF přes `CompletableFuture` + cache 1h (T-05-05)
+5. **Follow-ups (Plan 04):** Drift offline cache (last 50 searches); nightly PostgreSQL RÚIAN import; cert pinning pro RÚIAN/Czech POINT; Český POINT API provisioning (Ministry)
+6. **Follow-ups (Plan 05):** Rate limit na PDF/confirmation endpointech; digitální podpis PDF (fáze 2, T-05-01); PDF/UA tagged a11y + verapdf do CI; generování PDF přes `CompletableFuture` + cache 1h (T-05-05)
+7. **Follow-ups (Plan 06):** MFA pro úředníky (T-06-01, TOTP enrollment); per-form SLA lhůty (aktuálně jednotných 30 dní pro všechny formuláře); rate limit na `/api/admin/**`; Keycloak `KC_BOOTSTRAP_ADMIN_USER` nevytváří perzistentní admin uživatele (Keycloak 26.0.8 quirk, netýká se realm importu); docker-compose Keycloak healthcheck používá `curl`, který v image chybí (pre-existing, healthcheck hlásí unhealthy i když kontejner funguje)
 
 ### Open Questions
 - [ ] Citizen Portal federation API spec (DIA/NAKIT) – need contact
@@ -77,6 +81,7 @@
 │   ├── 01-03-SUMMARY.md ✅
 │   ├── 01-04-SUMMARY.md ✅
 │   ├── 01-05-SUMMARY.md ✅
+│   ├── 01-06-SUMMARY.md ✅
 │   └── SKELETON.md
 └── STATE.md            # This file
 ```
@@ -94,3 +99,4 @@
 - `2ac4515` — **Plan 03 complete: Guest submission core — forms catalog, validation, tracking**
 - *(next)* — **Plan 04: RÚIAN + Czech POINT — autocomplete, locator map/list (mobile + admin-web)**
 - *(next)* — **Plan 05: PDF/A-1b confirmation with QR — mobile preview + admin preview/download**
+- **Plan 06 complete: Keycloak PKCE auth + admin submissions dashboard (SLA badges, state machine, audit trail, streaming CSV export)** — commits `2f79cbe`, `53ddc1e`, `bdc904b`, `c338a5b`, `94d1761`, `d008c24`

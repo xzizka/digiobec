@@ -277,3 +277,7 @@ cd apps/admin-web && npm run dev   # http://localhost:3000, login: jana.klerkova
 ---
 *Phase: 01-foundation-guest-mode*
 *Completed: 2026-08-01*
+
+## Self-Check: PASSED
+
+All 16 key files verified present on disk; all 6 commit hashes (`2f79cbe`, `53ddc1e`, `bdc904b`, `c338a5b`, `94d1761`, `d008c24`) verified present in `git log`.
