@@ -1,0 +1,25 @@
+{
+  "name": "municipal-citizen-portal",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/admin-web"
+  ],
+  "scripts": {
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "dev:admin": "npm run dev --workspace=apps/admin-web",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "nx": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

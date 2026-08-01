@@ -1,0 +1,19 @@
+{
+  "flutter_localizations": {
+    "supported_locales": [
+      "cs",
+      "en"
+    ],
+    "fallback_locale": "cs",
+    "generate": true
+  },
+  "easy_localization": {
+    "source_dir": "assets/translations",
+    "fallback_locale": "cs",
+    "supported_locales": [
+      "cs",
+      "en"
+    ],
+    "asset_loader": "json"
+  }
+}

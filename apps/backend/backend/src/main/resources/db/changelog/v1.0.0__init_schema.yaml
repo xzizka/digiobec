@@ -1,0 +1,132 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0__init_schema
+      author: portal-team
+      changes:
+        - createTable:
+            tableName: submission
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reference_number
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: form_id
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: form_data
+                  type: jsonb
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(30)
+                  defaultValue: SUBMITTED
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contact_email
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contact_phone
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: submission_attachment
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: submission_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_attachment_submission
+                    references: submission(id)
+              - column:
+                  name: file_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mime_type
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: size_bytes
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: storage_path
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: submission
+            indexName: idx_submission_reference_number
+            columns:
+              - column:
+                  name: reference_number
+
+        - createIndex:
+            tableName: submission
+            indexName: idx_submission_status
+            columns:
+              - column:
+                  name: status
+
+        - createIndex:
+            tableName: submission
+            indexName: idx_submission_created_at
+            columns:
+              - column:
+                  name: created_at
+
+        - createIndex:
+            tableName: submission_attachment
+            indexName: idx_attachment_submission_id
+            columns:
+              - column:
+                  name: submission_id
+
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS pg_trgm;

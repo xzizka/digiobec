@@ -1,0 +1,95 @@
+{
+  "$schema": "https://nx.dev/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": ["default", "!{projectRoot}/**/*.spec.ts", "!{projectRoot}/**/*.test.ts"],
+    "sharedGlobals": []
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
+    },
+    "test": {
+      "inputs": ["default", "^production"]
+    },
+    "lint": {
+      "inputs": ["default", "^production"]
+    }
+  },
+  "projects": {
+    "mobile": {
+      "root": "apps/mobile",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "command": "flutter build apk --release",
+          "options": {
+            "cwd": "apps/mobile"
+          }
+        },
+        "test": {
+          "command": "flutter test",
+          "options": {
+            "cwd": "apps/mobile"
+          }
+        },
+        "lint": {
+          "command": "flutter analyze",
+          "options": {
+            "cwd": "apps/mobile"
+          }
+        }
+      }
+    },
+    "backend": {
+      "root": "apps/backend",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "command": "./gradlew build -x test",
+          "options": {
+            "cwd": "apps/backend"
+          }
+        },
+        "test": {
+          "command": "./gradlew test",
+          "options": {
+            "cwd": "apps/backend"
+          }
+        },
+        "lint": {
+          "command": "./gradlew check",
+          "options": {
+            "cwd": "apps/backend"
+          }
+        }
+      }
+    },
+    "admin-web": {
+      "root": "apps/admin-web",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "command": "npm run build",
+          "options": {
+            "cwd": "apps/admin-web"
+          }
+        },
+        "test": {
+          "command": "npm test",
+          "options": {
+            "cwd": "apps/admin-web"
+          }
+        },
+        "lint": {
+          "command": "npm run lint",
+          "options": {
+            "cwd": "apps/admin-web"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/home/ozizka/VS_Workspaces/opencode/backend/src/main/kotlin/cz/obec/portal/ObecPortalApplication.kt
+/home/ozizka/VS_Workspaces/opencode/backend/src/main/kotlin/cz/obec/portal/health/DatabaseHealthIndicator.kt
+/home/ozizka/VS_Workspaces/opencode/backend/src/main/kotlin/cz/obec/portal/health/KeycloakHealthIndicator.kt
+/home/ozizka/VS_Workspaces/opencode/backend/src/main/kotlin/cz/obec/portal/health/HealthController.kt
+/home/ozizka/VS_Workspaces/opencode/backend/src/main/kotlin/cz/obec/portal/config/SecurityConfig.kt

@@ -1,0 +1,30 @@
+{
+  "projectName": "municipal-citizen-portal",
+  "workspaceRoot": "/home/ozizka/VS_Workspaces/opencode",
+  "planningDir": ".planning",
+  "workflow": {
+    "autoApprove": false,
+    "requireResearch": true,
+    "requireRequirements": true,
+    "requireRoadmap": true,
+    "commitAfterEachStep": true
+  },
+  "techStack": {
+    "mobile": "flutter",
+    "backend": "spring-boot-kotlin",
+    "adminWeb": "react-typescript",
+    "database": "postgresql",
+    "iam": "keycloak",
+    "payments": "gp-webpay",
+    "ci": "github-actions"
+  },
+  "czechCompliance": {
+    "eidentita": true,
+    "isds": true,
+    "isvs": true,
+    "wcag": "2.1-AA",
+    "gdpr": true
+  },
+  "languages": ["cs", "en"],
+  "accessibility": "WCAG 2.1 AA"
+}
