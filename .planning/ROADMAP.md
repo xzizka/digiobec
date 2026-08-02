@@ -46,7 +46,13 @@
       — citizen-web živě ověřen proti běžícímu stacku; mobil ověřen 50/50 testy včetně
       kontraktních (`apps/mobile/test/features/submission/wire_contract_test.dart`)
 - [x] Autocomplete adresy funguje nad demo datasetem pilotní obce (Broumy a okolí)
-      — *plné pokrytí RÚIAN vyžaduje registraci u ČÚZK, viz E2.6*
+      — *plné pokrytí RÚIAN je práce navíc, ne blokace; viz E2.6*
+      — **Korekce 2026-08-02:** descope byl původně zdůvodněn tím, že plný RÚIAN vyžaduje
+      registraci u ČÚZK. To je nepravda. Výzkum fáze 2 našel a živě ověřil veřejný ČÚZK
+      endpoint, který funguje **bez API klíče a bez registrace**
+      (`ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/MapServer/exts/GeocodeSOE`).
+      Fáze 1 skutečně dodala jen demo dataset — to platí — ale odloženo to zůstává
+      proto, že to nikdo neimplementoval, ne proto, že by to bylo zvenčí blokované.
 - [x] PDF potvrzení obsahuje sledovací kód, QR pro ověření
 - [x] axe-core hlásí 0 WCAG 2.1 AA porušení v CI (admin-web, citizen-web)
       — *měření Lighthouse ≥ 95 vyžaduje běžící deployment, viz E2.6*
@@ -70,11 +76,13 @@
 - **E2.3** Payments: GP WebPay integrace, QR platba generování, chytrá složenka PDF, idempotency
 - **E2.4** Doručky: ISDS odesílání doručenek, evidence doručení, SMS/e-mail fallback
 - **E2.5** Security hardening: certificate pinning, Play Integrity / App Attest, secure storage
-- **E2.6** Infrastruktura a externí registrace *(přeneseno z fáze 1 při descope 2026-08-02)*:
-  registrace u ČÚZK pro RÚIAN API (reálný endpoint + API klíč, nahrazení demo datasetu),
-  staging prostředí a funkční CD pipeline, měření Lighthouse na běžícím deploymentu.
-  Fáze 2 je pro tuto práci přirozené místo — už tak stojí na externích registracích
-  (eIdentita/NIA, ISDS, GP WebPay), takže procurement běží souběžně.
+- **E2.6** Infrastruktura a odložené položky *(přeneseno z fáze 1 při descope 2026-08-02)*:
+  napojení na **reálný ČÚZK RÚIAN endpoint** (žádná registrace ani API klíč — ověřeno živě,
+  viz 02-RESEARCH.md; nahrazuje fabrikovanou URL a 7položkový fallback), staging prostředí
+  a dotažení CD pipeline (obrazy se už builduje a pushuje do GHCR, chybí jen deploy krok),
+  měření Lighthouse na běžícím deploymentu, a fallback dataset pro Czech POINT locator.
+  **RÚIAN a staging nejsou blokované na nikom zvenčí — jsou to nejrychlejší výhry fáze**
+  a měly by jít první, protože staging zároveň odblokuje Lighthouse.
 
 ### Acceptance Criteria
 

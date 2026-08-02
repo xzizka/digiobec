@@ -15,7 +15,16 @@ resolution_detail:
     evidence: "Commits 99e53b5 + 2f7d0f3. decodeJsonMapField added; send path jsonEncode'd; FakeSubmissionDatasource corrected to the real string shape; wire_contract_test.dart pins the contract. Verified with Flutter 3.44.8: 50/50 tests, flutter analyze clean. This also discharges the 'human_verification' item below — the crash is fixed and now covered by tests written from the Kotlin DTOs."
   - gap: "Autocomplete adresy funguje pro 95 % adres RÚIAN (AC #2)"
     how: descoped
-    evidence: "Requires ČÚZK registration (external credential). AC rewritten to the demo dataset actually delivered; original moved to ROADMAP Phase 2 epic E2.6 with its own acceptance criterion."
+    evidence: "AC rewritten to the demo dataset phase 1 actually delivered; original moved to ROADMAP Phase 2 epic E2.6 with its own acceptance criterion."
+    correction: >-
+      2026-08-02: the original rationale recorded here — 'requires ČÚZK registration, an
+      external credential nobody on this side holds' — was WRONG. Phase 2 research found and
+      live-verified a public ČÚZK endpoint that needs no API key and no registration
+      (ags.cuzk.gov.cz/arcgis/rest/services/RUIAN/MapServer/exts/GeocodeSOE), independently
+      re-confirmed returning real Broumy addresses. The descope of what phase 1 DELIVERED
+      stands and is accurate; the stated reason for deferring the rest does not. This is a
+      cheap, unblocked implementation task, not a procurement dependency — E2.6 updated
+      accordingly.
   - gap: "CI/CD deploy do staging za < 15 min (AC #5)"
     how: descoped
     evidence: "Requires a staging environment (infrastructure decision). AC rewritten to CI build+test green on every PR; original moved to ROADMAP Phase 2 epic E2.6."
@@ -86,7 +95,7 @@ human_verification:
 | # | Original gap | How it was closed | Honest reading |
 |---|---|---|---|
 | 1 | Mobile guest flow crashes on real backend responses | **Fixed** (`99e53b5`, `2f7d0f3`) | Genuinely resolved. `decodeJsonMapField` handles the JSON-string fields, the send path encodes `formData`, the test double was corrected to the real shape, and `wire_contract_test.dart` pins the contract from the Kotlin DTOs. Verified with Flutter 3.44.8 — 50/50 tests, `flutter analyze` clean. A fourth instance (mobile sending `formData` as an object against `SubmissionRequestDto.formData: String`) was found and fixed in the same pass. |
-| 2 | RÚIAN autocomplete covers 7 hard-coded addresses, not 95 % of RÚIAN | **Descoped** | Not fixed. Needs ČÚZK registration — an external credential nobody on this side holds. The AC now claims only the demo dataset that actually exists; the real integration is ROADMAP Phase 2, epic E2.6. |
+| 2 | RÚIAN autocomplete covers 7 hard-coded addresses, not 95 % of RÚIAN | **Descoped** — *rationale corrected 2026-08-02* | Not fixed. The AC now claims only the demo dataset that actually exists; the real integration is ROADMAP Phase 2, epic E2.6. **The reason first recorded here was wrong:** this was deferred as needing a ČÚZK registration, but phase 2 research found and live-verified a public ČÚZK endpoint requiring no key and no registration (independently re-confirmed returning real Broumy addresses). It is a cheap, unblocked task — deferred because nobody built it, not because anyone outside the project is gating it. |
 | 3 | CD staging deploy is an `echo` stub | **Descoped** | Not fixed. Needs a staging environment to exist. The AC now claims only CI build+test, which is real; the deploy target is Phase 2, E2.6. |
 | 4 | Lighthouse ≥ 95 never measured | **Descoped** | Not fixed. Needs a running deployment. The AC now claims axe-core 0 WCAG 2.1 AA violations in CI, which is genuinely delivered and verified. Lighthouse is Phase 2, E2.6. |
 
