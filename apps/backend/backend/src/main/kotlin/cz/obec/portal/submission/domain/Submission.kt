@@ -29,8 +29,11 @@ data class Submission(
     @Column(nullable = false, updatable = false)
     val id: UUID = UUID.randomUUID(),
 
-    /** Public, unguessable, time-ordered (UUID v7-like) code shown to the citizen. */
-    @Column(name = "tracking_code", nullable = false, unique = true, updatable = false, length = 36)
+    /**
+     * Public, unguessable, citizen-facing code in the form `YYYY-XXXX-XXXX-XXXX`.
+     * See [TrackingCode] — it is the sole access credential for a guest submission.
+     */
+    @Column(name = "tracking_code", nullable = false, unique = true, updatable = false, length = 50)
     val trackingCode: String,
 
     /** References the form definition key, e.g. "info-request". */

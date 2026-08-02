@@ -146,7 +146,7 @@ export function SubmissionsPage() {
               setPage(0)
               setQ(e.target.value)
             }}
-            placeholder="0000018b66a2..."
+            placeholder="2026-A7K3-9QXM-2FHT"
           />
         </div>
       </div>

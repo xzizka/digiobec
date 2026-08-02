@@ -15,7 +15,7 @@ class CsvExportServiceTest {
     private val service = CsvExportService()
 
     private fun row(
-        trackingCode: String = "0000018b66a2-6f4e-4f3b-9b2e-000000000000",
+        trackingCode: String = "2026-A7K3-9QXM-2FHT",
         contactEmail: String = "anna@example.cz",
         sla: SlaStatus = SlaStatus.OK,
         submittedAt: Instant = Instant.parse("2026-08-01T10:30:00Z"),
@@ -42,7 +42,7 @@ class CsvExportServiceTest {
         val text = String(bytes, 3, bytes.size - 3, StandardCharsets.UTF_8)
         val lines = text.trim().lines()
         assertEquals("Číslo podání;Formulář;Stav;Kontaktní e-mail;Kontaktní telefon;Odesláno;SLA", lines[0])
-        assertTrue(lines[1].startsWith("0000018b66a2-6f4e-4f3b-9b2e-000000000000;info-request;Přijato;anna@example.cz"))
+        assertTrue(lines[1].startsWith("2026-A7K3-9QXM-2FHT;info-request;Přijato;anna@example.cz"))
     }
 
     @Test

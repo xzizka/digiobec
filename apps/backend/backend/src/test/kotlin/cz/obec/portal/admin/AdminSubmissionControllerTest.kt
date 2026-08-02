@@ -78,7 +78,7 @@ class AdminSubmissionControllerTest {
 
     private fun sampleListDto() = AdminSubmissionListDto(
         id = submissionId.toString(),
-        trackingCode = "0000018b66a2-6f4e-4f3b-9b2e-000000000000",
+        trackingCode = "2026-A7K3-9QXM-2FHT",
         formKey = "info-request",
         status = SubmissionStatus.SUBMITTED,
         contactEmail = "anna@example.cz",
@@ -89,7 +89,7 @@ class AdminSubmissionControllerTest {
 
     private fun sampleDetailDto(status: SubmissionStatus = SubmissionStatus.PROCESSING) = AdminSubmissionDetailDto(
         id = submissionId.toString(),
-        trackingCode = "0000018b66a2-6f4e-4f3b-9b2e-000000000000",
+        trackingCode = "2026-A7K3-9QXM-2FHT",
         formKey = "info-request",
         formData = """{"requesterName":"Anna Nováková"}""",
         status = status,
@@ -101,8 +101,8 @@ class AdminSubmissionControllerTest {
         dueAt = Instant.parse("2026-08-31T10:00:00Z"),
         validNextStates = listOf(SubmissionStatus.COMPLETED, SubmissionStatus.REJECTED, SubmissionStatus.NEEDS_INFO),
         history = emptyList(),
-        confirmationUrl = "/api/submissions/0000018b66a2-6f4e-4f3b-9b2e-000000000000/confirmation",
-        pdfUrl = "/api/submissions/0000018b66a2-6f4e-4f3b-9b2e-000000000000/pdf",
+        confirmationUrl = "/api/submissions/2026-A7K3-9QXM-2FHT/confirmation",
+        pdfUrl = "/api/submissions/2026-A7K3-9QXM-2FHT/pdf",
     )
 
     @Test

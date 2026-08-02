@@ -22,7 +22,7 @@ async function expectNoA11yViolations(container: HTMLElement) {
 // named export does not see a `{ ...actual, foo: vi.fn() }` override).
 const getSpy = vi.spyOn(httpClient, 'get');
 
-const TRACKING_CODE = '0019fbeb336ed-770cb9a5-2a4e-48d5-8f9d';
+const TRACKING_CODE = '2026-A7K3-9QXM-2FHT';
 
 const formCatalog = [
   {

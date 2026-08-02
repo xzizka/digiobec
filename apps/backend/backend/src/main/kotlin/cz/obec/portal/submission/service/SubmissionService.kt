@@ -4,6 +4,7 @@ import cz.obec.portal.submission.api.dto.SubmissionRequestDto
 import cz.obec.portal.submission.api.dto.SubmissionResponseDto
 import cz.obec.portal.submission.domain.Submission
 import cz.obec.portal.submission.domain.SubmissionStatus
+import cz.obec.portal.submission.domain.TrackingCode
 import cz.obec.portal.submission.repository.SubmissionRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -46,7 +47,12 @@ class SubmissionService(
 
     @Transactional(readOnly = true)
     fun findByTrackingCode(code: String): SubmissionResponseDto {
-        val submission = submissionRepository.findByTrackingCode(code)
+        // Tolerate how citizens actually type the code off a PDF or over the phone —
+        // lowercase, spaces instead of hyphens, O for 0. Unparseable input is a 404, not a
+        // database round-trip.
+        val normalized = TrackingCode.normalize(code)
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Podání nenalezeno.")
+        val submission = submissionRepository.findByTrackingCode(normalized)
             .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Podání nenalezeno.") }
         return SubmissionResponseDto.from(submission)
     }
@@ -65,14 +71,22 @@ class SubmissionService(
             .map { SubmissionResponseDto.from(it) }
     }
 
-    /** Time-ordered unguessable tracking code (UUID v7 flavour). */
+    /**
+     * Generates a citizen-facing tracking code, retrying on the (astronomically unlikely)
+     * chance of colliding with an existing one. The unique index on `tracking_code` is the
+     * real guarantee; this just avoids surfacing a constraint violation as a 500.
+     */
     private fun newTrackingCode(): String {
-        val now = Instant.now().toEpochMilli()
-        val uuid = UUID.randomUUID()
-        return java.lang.String.format(
-            "%013x-%s",
-            now,
-            uuid.toString().substring(0, 23),
+        repeat(MAX_TRACKING_CODE_ATTEMPTS) {
+            val candidate = TrackingCode.generate()
+            if (submissionRepository.findByTrackingCode(candidate).isEmpty) return candidate
+        }
+        throw IllegalStateException(
+            "Nepodařilo se vygenerovat unikátní sledovací kód po $MAX_TRACKING_CODE_ATTEMPTS pokusech.",
         )
+    }
+
+    private companion object {
+        const val MAX_TRACKING_CODE_ATTEMPTS = 5
     }
 }

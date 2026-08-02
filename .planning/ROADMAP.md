@@ -87,7 +87,14 @@
 ### Acceptance Criteria
 
 - [ ] Přihlášení Bankovní identitou < 30 s end-to-end
-- [ ] Platba kartou proběhne v aplikaci (WebView) bez přesměrování do prohlížeče
+- [ ] Platba kartou proběhne přes GP WebPay v zabezpečeném in-app prohlížeči
+      (Custom Tabs / SFSafariViewController), s návratem do aplikace přes deep link
+      — *přeformulováno 2026-08-02:* původní znění „v aplikaci (WebView) bez přesměrování
+      do prohlížeče" není s GP WebPay splnitelné (nemá nativní mobilní SDK, jede přes
+      redirect) a je v rozporu s PSD2 SCA / 3-D Secure, které redirect na stránku vydavatele
+      karty předpokládají. Vlastní `WebView` je pro platební toky navíc anti-pattern —
+      vydavatelé ho blokují a app stores ho u plateb odmítají. Měřitelné kritérium je tedy
+      návrat do aplikace bez ztráty kontextu, ne absence redirectu.
 - [ ] QR platba skenovatelná z obrazovky / vytištěná
 - [ ] Doručka v ISDS doručena do 1 min po změně stavu
 - [ ] Penetrace test: 0 kritických/high findings

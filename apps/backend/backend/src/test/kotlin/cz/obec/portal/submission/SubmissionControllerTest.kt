@@ -54,7 +54,7 @@ class SubmissionControllerTest {
 
     private fun sampleResponse(): SubmissionResponseDto = SubmissionResponseDto(
         id = "11111111-1111-1111-1111-111111111111",
-        trackingCode = "0000018b66a2-6f4e-4f3b-9b2e-000000000000",
+        trackingCode = "2026-A7K3-9QXM-2FHT",
         formKey = "info-request",
         formData = """{"requesterName":"Anna Nováková"}""",
         status = SubmissionStatus.SUBMITTED,
@@ -103,10 +103,10 @@ class SubmissionControllerTest {
 
     @Test
     fun `submissions by code returns submission`() {
-        whenever(submissionService.findByTrackingCode("0000018b66a2-6f4e-4f3b-9b2e-000000000000"))
+        whenever(submissionService.findByTrackingCode("2026-A7K3-9QXM-2FHT"))
             .thenReturn(sampleResponse())
 
-        mockMvc.perform(get("/api/submissions/0000018b66a2-6f4e-4f3b-9b2e-000000000000"))
+        mockMvc.perform(get("/api/submissions/2026-A7K3-9QXM-2FHT"))
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.trackingCode").value(sampleResponse().trackingCode))
             .andExpect(jsonPath("$.contactEmail").value("anna@example.cz"))

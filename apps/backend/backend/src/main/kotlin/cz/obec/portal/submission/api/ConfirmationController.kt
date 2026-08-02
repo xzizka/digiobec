@@ -1,6 +1,7 @@
 package cz.obec.portal.submission.api
 
 import cz.obec.portal.submission.api.dto.ConfirmationDto
+import cz.obec.portal.submission.domain.TrackingCode
 import cz.obec.portal.submission.repository.SubmissionRepository
 import cz.obec.portal.submission.service.ConfirmationRenderer
 import cz.obec.portal.submission.service.ConfirmationRenderer.ConfirmationData
@@ -85,9 +86,13 @@ class ConfirmationController(
             .replace("{{verificationUrl}}", htmlEscape(data.verificationUrl))
     }
 
+    // Same input tolerance as the tracking lookup — a citizen following the verification URL
+    // off a printed PDF may well retype it by hand.
     private fun requireSubmission(trackingCode: String) =
-        submissionRepository.findByTrackingCode(trackingCode)
-            .orElseThrow { NotFound(trackingCode) }
+        TrackingCode.normalize(trackingCode)
+            ?.let { submissionRepository.findByTrackingCode(it) }
+            ?.orElseThrow { NotFound(trackingCode) }
+            ?: throw NotFound(trackingCode)
 
     private fun requireForm(submission: cz.obec.portal.submission.domain.Submission): cz.obec.portal.submission.domain.FormDefinition =
         formCatalogService.findDefinition(submission.formKey)

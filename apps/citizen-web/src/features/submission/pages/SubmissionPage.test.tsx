@@ -170,7 +170,7 @@ describe('SubmissionPage', () => {
     postSpy.mockResolvedValue({
       data: {
         id: '11111111-1111-1111-1111-111111111111',
-        trackingCode: '0019fbeb336ed-770cb9a5-2a4e-48d5-8f9d',
+        trackingCode: '2026-A7K3-9QXM-2FHT',
         formKey: 'info-request',
         formData: '{}',
         status: 'SUBMITTED',
@@ -196,11 +196,11 @@ describe('SubmissionPage', () => {
     });
 
     expect(
-      await screen.findByText('0019fbeb336ed-770cb9a5-2a4e-48d5-8f9d'),
+      await screen.findByText('2026-A7K3-9QXM-2FHT'),
     ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Stáhnout potvrzení/ })).toHaveAttribute(
       'href',
-      '/api/submissions/0019fbeb336ed-770cb9a5-2a4e-48d5-8f9d/pdf',
+      '/api/submissions/2026-A7K3-9QXM-2FHT/pdf',
     );
   });
 
