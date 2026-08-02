@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'package:municipal_portal/core/json/json_field.dart';
+
 enum FormFieldType { text, textarea, select, date, checkbox }
 
 extension FormFieldTypeX on FormFieldType {
@@ -71,8 +73,9 @@ class FormDefinition {
   final List<FormFieldSpec> fields;
 
   factory FormDefinition.fromJson(Map<String, dynamic> json) {
-    final schema = (json['schema'] as Map<String, dynamic>? ?? const {});
-    final uiSchema = (json['uiSchema'] as Map<String, dynamic>? ?? const {});
+    // `schema`/`uiSchema` arrive JSON-encoded as strings, not as objects.
+    final schema = decodeJsonMapField(json['schema']);
+    final uiSchema = decodeJsonMapField(json['uiSchema']);
     final properties =
         (schema['properties'] as Map<String, dynamic>? ?? const {});
     final required =

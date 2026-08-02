@@ -1,7 +1,17 @@
+import 'dart:convert';
+
 import 'package:municipal_portal/features/submission/data/submission_remote_datasource.dart';
 import 'package:municipal_portal/features/submission/domain/submission.dart';
 
 /// Deterministic in-memory backend double used across submission feature tests.
+///
+/// The payload shapes here mirror the **real** backend wire contract. In
+/// particular `schema`, `uiSchema` and `formData` are JSON-encoded strings, not
+/// nested objects, because that is what `FormController.form` and
+/// `SubmissionResponseDto` actually emit. An earlier version of this fake
+/// returned them as maps, which made the whole mobile suite pass against a
+/// shape the backend never sends and hid a runtime `TypeError` in
+/// `FormDefinition.fromJson` / `Submission.fromJson`.
 class FakeSubmissionDatasource implements SubmissionRemoteDatasource {
   int catalogCalls = 0;
   int submitCalls = 0;
@@ -29,7 +39,7 @@ class FakeSubmissionDatasource implements SubmissionRemoteDatasource {
       'formKey': formKey,
       'title': {'cs': 'Žádost o informace', 'en': 'Freedom of Information Request'},
       'description': {'cs': '', 'en': ''},
-      'schema': {
+      'schema': jsonEncode({
         'type': 'object',
         'required': [
           'requesterName',
@@ -78,8 +88,8 @@ class FakeSubmissionDatasource implements SubmissionRemoteDatasource {
             'const': true,
           },
         },
-      },
-      'uiSchema': {
+      }),
+      'uiSchema': jsonEncode({
         'requesterName': {'ui:widget': 'text'},
         'requesterContact': {'ui:widget': 'text'},
         'requestType': {'ui:widget': 'select'},
@@ -90,7 +100,7 @@ class FakeSubmissionDatasource implements SubmissionRemoteDatasource {
           'ui:condition': {'field': 'requestType', 'value': 'info-document'},
         },
         'agreeTerms': {'ui:widget': 'checkbox'},
-      },
+      }),
     };
   }
 
@@ -107,7 +117,7 @@ class FakeSubmissionDatasource implements SubmissionRemoteDatasource {
       'id': 'id-$code',
       'trackingCode': code,
       'formKey': formKey,
-      'formData': formData,
+      'formData': jsonEncode(formData),
       'status': 'SUBMITTED',
       'contactEmail': contactEmail,
       'contactPhone': contactPhone,

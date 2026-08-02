@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/network/dio_client.dart';
@@ -30,7 +32,13 @@ class SubmissionRemoteDatasource {
       AppConstants.submissionsEndpoint,
       data: {
         'formKey': formKey,
-        'formData': formData,
+        // `SubmissionRequestDto.formData` (backend) is a `String` column, not
+        // a nested object - Dio's default JSON body encoder would otherwise
+        // send `formData` as an object and Jackson would reject it with
+        // "Cannot deserialize value of type String from Object value"
+        // (symmetric to the receive-side schema/uiSchema/formData string
+        // bug fixed in FormDefinition.fromJson / Submission.fromJson).
+        'formData': jsonEncode(formData),
         if (contactEmail != null) 'contactEmail': contactEmail,
         if (contactPhone != null) 'contactPhone': contactPhone,
       },

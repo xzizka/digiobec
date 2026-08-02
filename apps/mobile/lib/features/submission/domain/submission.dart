@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'package:municipal_portal/core/json/json_field.dart';
+
 @immutable
 class Submission {
   const Submission({
@@ -27,8 +29,8 @@ class Submission {
       id: json['id'] as String? ?? '',
       trackingCode: json['trackingCode'] as String? ?? '',
       formKey: json['formKey'] as String? ?? '',
-      formData: (json['formData'] as Map<String, dynamic>?) ??
-          const <String, dynamic>{},
+      // `formData` arrives JSON-encoded as a string, not as an object.
+      formData: decodeJsonMapField(json['formData']),
       status: json['status'] as String? ?? 'SUBMITTED',
       contactEmail: json['contactEmail'] as String?,
       contactPhone: json['contactPhone'] as String?,
