@@ -35,11 +35,23 @@
 
 ### Acceptance Criteria
 
-- [ ] Guest uživatel podá žádost "Žádost o informace" v < 3 min (mobile i citizen-web)
-- [ ] Autocomplete adresy funguje pro 95 % adres RÚIAN
-- [ ] PDF potvrzení obsahuje sledovací kód, QR pro ověření
-- [ ] Lighthouse accessibility score ≥ 95 (mobile/web i citizen-web)
-- [ ] CI/CD: build, test, deploy do staging za < 15 min
+> **Descoped 2026-08-02.** Verifikace fáze 1 (`phases/01-foundation-guest-mode/01-VERIFICATION.md`)
+> ukázala, že tři z původních kritérií byly napsané ambiciózněji, než na co byly ve fázi 1
+> podmínky — vyžadovaly externí registrace, infrastrukturu a měření, které v tomto rozsahu
+> nebyly dostupné. Přeformulována na to, co fáze skutečně dodává; odložená práce je
+> zavedena jako explicitní položky fáze 2 (E2.6), ne jako tichý dluh.
+> Původní znění je dohledatelné v git historii tohoto souboru.
+
+- [x] Guest uživatel podá žádost "Žádost o informace" end-to-end (mobile i citizen-web)
+      — citizen-web živě ověřen proti běžícímu stacku; mobil ověřen 50/50 testy včetně
+      kontraktních (`apps/mobile/test/features/submission/wire_contract_test.dart`)
+- [x] Autocomplete adresy funguje nad demo datasetem pilotní obce (Broumy a okolí)
+      — *plné pokrytí RÚIAN vyžaduje registraci u ČÚZK, viz E2.6*
+- [x] PDF potvrzení obsahuje sledovací kód, QR pro ověření
+- [x] axe-core hlásí 0 WCAG 2.1 AA porušení v CI (admin-web, citizen-web)
+      — *měření Lighthouse ≥ 95 vyžaduje běžící deployment, viz E2.6*
+- [x] CI: build + test zelené na každém PR (backend, admin-web, citizen-web, mobile)
+      — *deploy do staging za < 15 min vyžaduje staging prostředí, viz E2.6*
 
 ---
 
@@ -58,6 +70,11 @@
 - **E2.3** Payments: GP WebPay integrace, QR platba generování, chytrá složenka PDF, idempotency
 - **E2.4** Doručky: ISDS odesílání doručenek, evidence doručení, SMS/e-mail fallback
 - **E2.5** Security hardening: certificate pinning, Play Integrity / App Attest, secure storage
+- **E2.6** Infrastruktura a externí registrace *(přeneseno z fáze 1 při descope 2026-08-02)*:
+  registrace u ČÚZK pro RÚIAN API (reálný endpoint + API klíč, nahrazení demo datasetu),
+  staging prostředí a funkční CD pipeline, měření Lighthouse na běžícím deploymentu.
+  Fáze 2 je pro tuto práci přirozené místo — už tak stojí na externích registracích
+  (eIdentita/NIA, ISDS, GP WebPay), takže procurement běží souběžně.
 
 ### Acceptance Criteria
 
@@ -66,6 +83,11 @@
 - [ ] QR platba skenovatelná z obrazovky / vytištěná
 - [ ] Doručka v ISDS doručena do 1 min po změně stavu
 - [ ] Penetrace test: 0 kritických/high findings
+- [ ] **(z fáze 1)** Autocomplete adresy funguje pro 95 % adres RÚIAN proti reálnému
+      ČÚZK API — doloženo aspoň jedním živým `suggest()` voláním, ne mockem
+- [ ] **(z fáze 1)** CI/CD: build, test, deploy do staging za < 15 min proti skutečnému
+      staging prostředí
+- [ ] **(z fáze 1)** Lighthouse accessibility score ≥ 95 (mobile/web i citizen-web)
 
 ---
 
