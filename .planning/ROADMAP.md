@@ -16,7 +16,7 @@
 
 ---
 
-## Phase 1: Foundation & Guest Mode (6 sprints)
+## Phase 1: Foundation & Guest Mode
 
 ### Goals
 
@@ -55,7 +55,7 @@
 
 ---
 
-## Phase 2: Auth & Payments (6 sprints)
+## Phase 2: Auth & Payments
 
 ### Goals
 
@@ -91,7 +91,7 @@
 
 ---
 
-## Phase 3: Case Management & Notifications (5 sprints)
+## Phase 3: Case Management & Notifications
 
 ### Goals
 
@@ -116,7 +116,7 @@
 
 ---
 
-## Phase 4: Municipal Services Pack (6 sprints)
+## Phase 4: Municipal Services Pack
 
 ### Goals
 
@@ -141,7 +141,7 @@
 
 ---
 
-## Phase 5: Federation & Admin (5 sprints)
+## Phase 5: Federation & Admin
 
 ### Goals
 
